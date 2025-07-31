@@ -50,6 +50,19 @@ const ITServices = () => {
       title: 'Digital Marketing & SEO',
       description: 'Boost your business online with SEO, PPC, content creation, and reputation management.',
       price: 'From $500/month'
+    },
+    // New services added below
+    {
+      icon: <Server className="w-8 h-8" />,  // Server Management
+      title: 'Server Management',
+      description: 'Complete server setup, maintenance, and monitoring services for your IT infrastructure.',
+      price: 'From $50/month'
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,  // Web Development
+      title: 'Web Development',
+      description: 'Custom websites and web applications tailored to your business needs.',
+      price: 'From $40/hour'
     }
   ];
 

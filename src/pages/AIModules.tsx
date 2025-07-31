@@ -1,4 +1,3 @@
-
 import Layout from '../components/Layout';
 import { Bot, Brain, MessageSquare, Image, Code, BarChart3, Heart, Building2 } from 'lucide-react';
 
@@ -63,7 +62,6 @@ const AIModules = () => {
       affiliate: 'Yes; referrers earn based on plan level',
       url: 'https://www.roast.dating'
     },
-    
     {
       icon: <MessageSquare className="w-8 h-8" />,
       title: 'Content Generator',
@@ -99,7 +97,23 @@ const AIModules = () => {
       title: 'Code Assistant',
       description: 'AI-powered coding help and automated code generation',
       price: '$20/month',
-      features: ['Code completion', 'Bug detection', 'Documentation generation'],limitations: [
+      features: ['Code completion', 'Bug detection', 'Documentation generation'],
+      limitations: [
+        'Mixed photo realism quality',
+        'Costs for high-tier features',
+        'Limited support',
+        'Experience varies based on input'
+      ],
+      affiliate: 'Yes; referrers earn based on plan level',
+      url: 'https://www.roast.dating'
+    },
+    {
+      icon: <BarChart3 className="w-8 h-8" />,  // Updated icon for Predictive Modeling
+      title: 'Predictive Modeling',
+      description: 'Forecast trends and make data-driven predictions',
+      price: '$25/month',
+      features: ['Time series forecasting', 'Trend analysis', 'Anomaly detection'],
+      limitations: [
         'Mixed photo realism quality',
         'Costs for high-tier features',
         'Limited support',
