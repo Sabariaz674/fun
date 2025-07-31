@@ -26,7 +26,7 @@ import IncomeDisclaimer from "./pages/IncomeDisclaimer";
 import LegalDisclaimer from "./pages/LegalDisclaimer";
 import CCPA from "./pages/CCPA";
 import NotFound from "./pages/NotFound";
-import Payment from "./pages/Payment";
+import Paymentpage from "./pages/PaymentPage";
 
 
 const queryClient = new QueryClient();
@@ -59,7 +59,7 @@ const App = () => (
           <Route path="/income-disclaimer" element={<IncomeDisclaimer />} />
           <Route path="/legal-disclaimer" element={<LegalDisclaimer />} />
           <Route path="/ccpa" element={<CCPA />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment" element={<Paymentpage />} />
        
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

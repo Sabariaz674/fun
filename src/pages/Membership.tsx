@@ -1,12 +1,10 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate hook
+import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
-import { Check, Star, Zap, Crown, Gift } from 'lucide-react';
-
-
+import { Check, Star, Zap, Crown } from 'lucide-react';  // Icons
 const Membership = () => {
-  const navigate = useNavigate();  // Initialize useNavigate
-
+  const navigate = useNavigate(); // Initialize useNavigate hook
+  
+  // Define the plans and their features
   const plans = [
     {
       name: 'Free Member',
@@ -27,7 +25,7 @@ const Membership = () => {
       ],
       buttonText: 'Join Free',
       buttonStyle: 'bg-gray-600 hover:bg-gray-700',
-       // Navigate to register page with query
+      onClick: () => navigate('/member-area'),  // Free members are directed to the member area directly
     },
     {
       name: 'Active FUN Member',
@@ -49,7 +47,7 @@ const Membership = () => {
       buttonStyle: 'bg-blue-600 hover:bg-blue-700',
       popular: true,
       icon: <Zap className="w-5 h-5" />,
-       // Navigate to register page with query
+      onClick: () => navigate('/payment'),  // Paid users are directed to the payment page
     },
     {
       name: 'Promo Page',
@@ -73,14 +71,13 @@ const Membership = () => {
       buttonText: 'Get Promo Page',
       buttonStyle: 'bg-purple-600 hover:bg-purple-700',
       icon: <Crown className="w-5 h-5" />,
-        // Navigate to register page with query
+      onClick: () => navigate('/payment'),  // Promo page users are also directed to the payment page
     }
   ];
 
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Choose Your Plan</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -148,7 +145,7 @@ const Membership = () => {
               )}
 
               <button
-                 // Add the onClick function for navigation
+                onClick={plan.onClick} // Add the onClick function for navigation
                 className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 text-white ${plan.buttonStyle}`}
               >
                 {plan.buttonText}
