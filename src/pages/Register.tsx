@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, User, Mail, MapPin, Users, Check, AlertCircle } from 'lucide-react';
 import Layout from '../components/Layout';
 
@@ -8,6 +8,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [step, setStep] = useState(1);
+   const navigate = useNavigate();
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -152,7 +153,7 @@ const Register = () => {
     if (Object.keys(newErrors).length === 0) {
       // In real implementation, this would complete the registration
       alert('Registration completed successfully! Welcome to 10 Dollar Fun!');
-      // Redirect to member area or login
+      navigate('/membership');
     }
   };
 

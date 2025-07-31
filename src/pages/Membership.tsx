@@ -27,7 +27,7 @@ const Membership = () => {
       ],
       buttonText: 'Join Free',
       buttonStyle: 'bg-gray-600 hover:bg-gray-700',
-      onClick: () => navigate('/register?plan=free')  // Navigate to register page with query
+       // Navigate to register page with query
     },
     {
       name: 'Active FUN Member',
@@ -49,7 +49,7 @@ const Membership = () => {
       buttonStyle: 'bg-blue-600 hover:bg-blue-700',
       popular: true,
       icon: <Zap className="w-5 h-5" />,
-      onClick: () => navigate('/register?plan=active')  // Navigate to register page with query
+       // Navigate to register page with query
     },
     {
       name: 'Promo Page',
@@ -73,7 +73,7 @@ const Membership = () => {
       buttonText: 'Get Promo Page',
       buttonStyle: 'bg-purple-600 hover:bg-purple-700',
       icon: <Crown className="w-5 h-5" />,
-      onClick: () => navigate('/register?plan=promo')  // Navigate to register page with query
+        // Navigate to register page with query
     }
   ];
 
@@ -148,7 +148,7 @@ const Membership = () => {
               )}
 
               <button
-                onClick={plan.onClick}  // Add the onClick function for navigation
+                 // Add the onClick function for navigation
                 className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 text-white ${plan.buttonStyle}`}
               >
                 {plan.buttonText}

@@ -22,17 +22,7 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Get membership type from localStorage
-    const membershipPlan = localStorage.getItem("membershipPlan");
-
-    // Check if the user is a Free Member
-    if (membershipPlan === "Free") {
-      // Redirect Free Members directly to the Affiliate Program page
-      navigate("/affiliate-program");
-    } else {
-      // Redirect Active FUN or Promo Page members directly to the Payment Page
-      navigate("/payment");
-    }
+   
   };
 
   return (
