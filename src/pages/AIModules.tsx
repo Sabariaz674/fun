@@ -1,26 +1,21 @@
 import Layout from '../components/Layout';
-import { Bot, Brain, MessageSquare, Image, Code, BarChart3, Heart, Building2 } from 'lucide-react';
+import { Bot, Brain, MessageSquare, Image, Code, BarChart3, Heart } from 'lucide-react';
 
 const AIModules = () => {
   const modules = [
     {
       icon: <Bot className="w-8 h-8" />,
       title: 'HubSpot AI Chatbot',
-      description: '24/7 Customer Engagement with CRM Intelligence. Turn conversations into conversions by automating support, qualifying leads, and syncing with your sales pipeline.',
+      description: '24/7 Customer Engagement with CRM Intelligence. Automate support, qualify leads, and sync with your sales pipeline.',
       price: 'Free - $20/month',
       features: [
         'Conversational Lead Screening (BANT)',
         'Visual Flow Builder (no code needed)',
-        '24/7 chat availability',
-        'CRM integration with full visibility',
-        'ChatSpot Generative AI for responses',
-        'Multi-channel presence (email/chat/web)'
+        'CRM integration with full visibility'
       ],
       limitations: [
         'Lacks advanced NLP/AI',
-        'No chat flow reuse',
-        'Limited to web & Facebook Messenger',
-        'Pro features require high upgrade costs'
+        'No chat flow reuse'
       ],
       affiliate: '30% recurring commission for 1 year',
       url: 'https://hubspot.com'
@@ -28,21 +23,16 @@ const AIModules = () => {
     {
       icon: <Heart className="w-8 h-8" />,
       title: 'Roast.dating',
-      description: 'Improve dating profiles on Tinder, Bumble, etc. using AI + expert review. Uses 10,000+ profiles and coaching data to optimize photos, bios, and prompts.',
+      description: 'Improve dating profiles using AI + expert review. Optimize photos, bios, and prompts.',
       price: '$6.99 - $97',
       features: [
         'AI and expert feedback',
-        'AI-generated headshots',
         'Bio improvement + daily tips',
-        'Telegram community',
-        'Tailored feedback via quiz',
-        '7-day free trial available'
+        'Telegram community'
       ],
       limitations: [
         'Mixed photo realism quality',
-        'Costs for high-tier features',
-        'Limited support',
-        'Experience varies based on input'
+        'Costs for high-tier features'
       ],
       affiliate: 'Yes; referrers earn based on plan level',
       url: 'https://www.roast.dating'
@@ -50,77 +40,67 @@ const AIModules = () => {
     {
       icon: <Brain className="w-8 h-8" />,
       title: 'Smart Analytics',
-      description: 'Advanced data analysis and insights powered by machine learning',
+      description: 'Advanced data analysis powered by machine learning, perfect for business intelligence.',
       price: '$15/month',
-      features: ['Advanced analytics', 'Machine learning insights', 'Custom reports'], 
-      limitations: [ 
-        'Mixed photo realism quality',
-        'Costs for high-tier features',
+      features: ['Machine learning insights', 'Advanced analytics', 'Custom reports'],
+      limitations: [
         'Limited support',
-        'Experience varies based on input'
+        'Needs setup for non-tech users'
       ],
       affiliate: 'Yes; referrers earn based on plan level',
-      url: 'https://www.roast.dating'
+      url: 'https://smartanalyticsinc.com'
     },
     {
       icon: <MessageSquare className="w-8 h-8" />,
       title: 'Content Generator',
-      description: 'AI-powered content creation for blogs, social media, and marketing',
+      description: 'Generate blog content, social media posts, and marketing text with AI.',
       price: '$12/month',
       features: ['Blog post generation', 'Social media content', 'Marketing copy'],
       limitations: [
-        'Mixed photo realism quality',
-        'Costs for high-tier features',
-        'Limited support',
-        'Experience varies based on input'
+        'Text may require editing',
+        'Limited brand voice matching'
       ],
       affiliate: 'Yes; referrers earn based on plan level',
-      url: 'https://www.roast.dating'
+      url: 'https://www.copy.ai/tools'
     },
     {
       icon: <Image className="w-8 h-8" />,
       title: 'Image Recognition',
-      description: 'Advanced computer vision for image analysis and processing',
+      description: 'Computer vision tools for object detection and image classification.',
       price: '$18/month',
-      features: ['Object detection', 'Image classification', 'OCR capabilities'],
+      features: ['Object detection', 'OCR', 'Image classification'],
       limitations: [
-        'Mixed photo realism quality',
-        'Costs for high-tier features',
-        'Limited support',
-        'Experience varies based on input'
+        'Accuracy depends on quality',
+        'Not suitable for all industries'
       ],
       affiliate: 'Yes; referrers earn based on plan level',
-      url: 'https://www.roast.dating'
+      url: 'https://cloud.google.com/vision'
     },
     {
       icon: <Code className="w-8 h-8" />,
       title: 'Code Assistant',
-      description: 'AI-powered coding help and automated code generation',
+      description: 'AI-powered code completion, bug detection, and documentation support.',
       price: '$20/month',
-      features: ['Code completion', 'Bug detection', 'Documentation generation'],
+      features: ['Code completion', 'Bug detection', 'Docs generation'],
       limitations: [
-        'Mixed photo realism quality',
-        'Costs for high-tier features',
-        'Limited support',
-        'Experience varies based on input'
+        'Not always accurate',
+        'Needs developer review'
       ],
       affiliate: 'Yes; referrers earn based on plan level',
-      url: 'https://www.roast.dating'
+      url: 'https://github.com/features/copilot'
     },
     {
-      icon: <BarChart3 className="w-8 h-8" />,  // Updated icon for Predictive Modeling
+      icon: <BarChart3 className="w-8 h-8" />,
       title: 'Predictive Modeling',
-      description: 'Forecast trends and make data-driven predictions',
+      description: 'Forecast trends and uncover patterns in your data using advanced AI models.',
       price: '$25/month',
-      features: ['Time series forecasting', 'Trend analysis', 'Anomaly detection'],
+      features: ['Trend forecasting', 'Anomaly detection', 'Time series modeling'],
       limitations: [
-        'Mixed photo realism quality',
-        'Costs for high-tier features',
-        'Limited support',
-        'Experience varies based on input'
+        'Setup complexity',
+        'Data preparation required'
       ],
       affiliate: 'Yes; referrers earn based on plan level',
-      url: 'https://www.roast.dating'
+      url: 'https://www.pecan.ai'
     }
   ];
 
@@ -140,7 +120,7 @@ const AIModules = () => {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">{module.title}</h3>
               <p className="text-gray-600 mb-4">{module.description}</p>
-              
+
               <div className="mb-4">
                 <span className="text-2xl font-bold text-gray-900">{module.price}</span>
               </div>
