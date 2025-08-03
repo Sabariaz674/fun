@@ -60,37 +60,37 @@ const Home = () => {
       icon: <Bot className="w-8 h-8" />,
       title: 'AI Chatbot',
       description: "Intelligent conversational AI for customer support and engagement",
-      price: "$10/month",
+
     },
     {
       icon: <Brain className="w-8 h-8" />,
       title: 'Smart Analytics',
       description: "Advanced data analysis and insights powered by machine learning",
-      price: "$15/month",
+
     },
     {
       icon: <MessageSquare className="w-8 h-8" />,
       title: 'Content Generator',
       description: "AI-powered content creation for blogs, social media, and marketing",
-      price: "$12/month",
+
     },
     {
       icon: <Image className="w-8 h-8" />,
       title: 'Image Recognition',
       description: "Advanced computer vision for image analysis and processing",
-      price: "$18/month",
+
     },
     {
       icon: <Code className="w-8 h-8" />,
       title: 'Code Assistant',
       description: "AI-powered coding help and automated code generation",
-      price: "$20/month",
+
     },
     {
       icon: <BarChart3 className="w-8 h-8" />,
       title: 'Predictive Modeling',
       description: "Forecast trends and make data-driven predictions",
-      price: "$25/month",
+
     }
   ];
 
@@ -99,38 +99,38 @@ const Home = () => {
       icon: <Server className="w-8 h-8" />,  // Server Management
       title: 'Server Management',
       description: 'Complete server setup, maintenance, and monitoring services .',
-      price: 'From $50/month'
+
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: 'Cybersecurity',
       description: 'Protect your business with advanced security solutions.',
-      price: 'From $15/month'
+
     },
     {
       icon: <Cloud className="w-8 h-8" />,
       title: 'Cloud Services',
       description: 'Cloud migration, setup, and management for your business .',
-      price: 'From $20/month'
+
     },
     {
       icon: <Wrench className="w-8 h-8" />,
       title: 'Technical Support',
       description: '24/7 IT support for all IT needs.',
-      price: 'From $25/month'
+
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
       title: 'Mobile Solution',
       description: 'Custom mobile app development and deployment.',
-      price: 'From $30/hour'
+
     },
 
     {
       icon: <Globe className="w-8 h-8" />,  // Web Development
       title: 'Web Development',
       description: 'Professional website design and development services.',
-      price: 'From $40/hour'
+
     }
   ];
   const reviveServices = [
@@ -138,18 +138,18 @@ const Home = () => {
       icon: <Cpu className="w-12 h-12" />,
       title: 'Hardware Upgrade',
       description: 'Boost your computer performance with new components.',
-      price: 'From $10'
+
     }, {
       icon: <HardDrive className="w-12 h-12" />,
       title: 'Data Recovery',
       description: `Recover lost files and restore your important data.`,
-      price: 'From $15'
+
     },
     {
       icon: <Monitor className="w-12 h-12" />,
       title: 'System Optimization',
       description: 'Clean up and optimize your system for better performance.',
-      price: 'From $20'
+
     },
 
 
@@ -252,7 +252,7 @@ const Home = () => {
               <p className="text-gray-600 mb-4">{module.description}</p>
 
               <div className="mb-4">
-                <span className="text-2xl font-bold text-gray-900">{module.price}</span>
+
               </div>
 
               <div className="flex items-center justify-between">
@@ -292,7 +292,7 @@ const Home = () => {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
                 <p className="text-gray-600 mb-4">{service.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-bold text-gray-900">{service.price}</span>
+
                   <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
                     Learn More
                   </button>
@@ -354,7 +354,7 @@ const Home = () => {
 
                 {/* Centering the price and the button */}
                 <div className="flex flex-col items-center justify-center">
-                  <span className="text-lg font-bold text-gray-900 mb-4">{service.price}</span>
+
                   <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200">
                     Learn More
                   </button>
@@ -367,37 +367,44 @@ const Home = () => {
 
 
       {/* The Revival Process Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-green-50 py-12 mt-12 max-w-6xl ml-40 mb-10 ">
-        <div className="max-w-5xl mx-auto px-4 sm:px-4 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">The Revival Process</h2>
-          <div className="grid md:grid-cols-4 gap-6">
+      <section className="bg-gradient-to-r from-blue-50 to-green-50 py-12 mt-12 max-w-6xl mx-auto mb-10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">The Revival Process</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {/* Step 1 */}
             <div className="text-center">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
                 1
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Diagnosis</h3>
-              <p className="text-gray-600 text-sm">We analyze your device to identify issues</p>
+              <p className="text-gray-600 text-sm sm:text-base">We analyze your device to identify issues</p>
             </div>
+
+            {/* Step 2 */}
             <div className="text-center">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
                 2
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Planning</h3>
-              <p className="text-gray-600 text-sm">Create a customized revival plan</p>
+              <p className="text-gray-600 text-sm sm:text-base">Create a customized revival plan</p>
             </div>
+
+            {/* Step 3 */}
             <div className="text-center">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
                 3
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Revival</h3>
-              <p className="text-gray-600 text-sm">Execute the revival process</p>
+              <p className="text-gray-600 text-sm sm:text-base">Execute the revival process</p>
             </div>
+
+            {/* Step 4 */}
             <div className="text-center">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
                 4
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Testing</h3>
-              <p className="text-gray-600 text-sm">Ensure everything works perfectly</p>
+              <p className="text-gray-600 text-sm sm:text-base">Ensure everything works perfectly</p>
             </div>
           </div>
         </div>
