@@ -27,6 +27,7 @@ import LegalDisclaimer from "./pages/LegalDisclaimer";
 import CCPA from "./pages/CCPA";
 import NotFound from "./pages/NotFound";
 import Paymentpage from "./pages/PaymentPage";
+;
 
 
 const queryClient = new QueryClient();

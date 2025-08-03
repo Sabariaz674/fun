@@ -1,29 +1,29 @@
-
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Users, DollarSign, Zap, Shield, Globe, TrendingUp } from 'lucide-react';
+import { ArrowRight, Star, Users, DollarSign, Zap, Shield, Globe, Bot, Brain, MessageSquare, Image, Code, BarChart3, Server, RefreshCw, Cloud, Wrench, Smartphone, Cpu, Monitor, HardDrive } from 'lucide-react';
 import Layout from '../components/Layout';
 
 const Home = () => {
+
   const features = [
     {
       icon: <Zap className="w-8 h-8 text-blue-600" />,
       title: "AI Tool Modules",
-      description: "Get 30 curated AI tools monthly for just $10. Transform your productivity and business operations."
+      description: "Discover 30 carefully selected Al tools each your business processes. Boost your efficieny and stay ahead of the competition."
     },
     {
       icon: <DollarSign className="w-8 h-8 text-green-600" />,
       title: "Affiliate Earnings",
-      description: "Earn up to 40% commission on referrals. Build recurring income through our generous affiliate program."
+      description: "Maximize your earning potential with our affiliate program, which offers up to a 40% commission on each referral. Build a reliable, recurring income stream by partnering with us."
     },
     {
       icon: <Shield className="w-8 h-8 text-purple-600" />,
-      title: "IT Services",
-      description: "Professional web development, app creation, and digital marketing services with referral bonuses."
+      title: " Fun IT Services",
+      description: "Our IT services encompass expert web development, app creation, and digital marketing solutions, all with competitive rates and attractive referral incentives."
     },
     {
       icon: <Globe className="w-8 h-8 text-indigo-600" />,
       title: "Revive Program",
-      description: "Free WordPress website redesigns with modern technologies and international expansion options."
+      description: "Our Revive Program offers free redesigns for WordPress sites, with advanced technologies and options for international. expansion. Or, how about we build a completely new WordPress site from scratch?"
     }
   ];
 
@@ -36,23 +36,124 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "Digital Marketer",
+      name: "Diane – Cameroon",
+      role: "Moderator ",
       content: "The AI tools have transformed my workflow. I've saved hours every week and my earnings have grown 300%!",
       rating: 5
     },
     {
-      name: "Mike Chen",
-      role: "Web Developer",
+      name: "Vicky – Kenya ",
+      role: "Nurse",
       content: "The affiliate program is incredible. I'm earning $2,000+ monthly just by sharing tools I already use.",
       rating: 5
     },
     {
-      name: "Emma Rodriguez",
+      name: "Jarmin – Bangladesh",
       role: "Content Creator",
       content: "10 Dollar Fun opened up a new income stream for me. The community support is amazing too!",
       rating: 5
     }
+  ];
+
+  const modules = [
+    {
+      icon: <Bot className="w-8 h-8" />,
+      title: 'AI Chatbot',
+      description: "Intelligent conversational AI for customer support and engagement",
+      price: "$10/month",
+    },
+    {
+      icon: <Brain className="w-8 h-8" />,
+      title: 'Smart Analytics',
+      description: "Advanced data analysis and insights powered by machine learning",
+      price: "$15/month",
+    },
+    {
+      icon: <MessageSquare className="w-8 h-8" />,
+      title: 'Content Generator',
+      description: "AI-powered content creation for blogs, social media, and marketing",
+      price: "$12/month",
+    },
+    {
+      icon: <Image className="w-8 h-8" />,
+      title: 'Image Recognition',
+      description: "Advanced computer vision for image analysis and processing",
+      price: "$18/month",
+    },
+    {
+      icon: <Code className="w-8 h-8" />,
+      title: 'Code Assistant',
+      description: "AI-powered coding help and automated code generation",
+      price: "$20/month",
+    },
+    {
+      icon: <BarChart3 className="w-8 h-8" />,
+      title: 'Predictive Modeling',
+      description: "Forecast trends and make data-driven predictions",
+      price: "$25/month",
+    }
+  ];
+
+  const services = [
+    {
+      icon: <Server className="w-8 h-8" />,  // Server Management
+      title: 'Server Management',
+      description: 'Complete server setup, maintenance, and monitoring services .',
+      price: 'From $50/month'
+    },
+    {
+      icon: <Shield className="w-8 h-8" />,
+      title: 'Cybersecurity',
+      description: 'Protect your business with advanced security solutions.',
+      price: 'From $15/month'
+    },
+    {
+      icon: <Cloud className="w-8 h-8" />,
+      title: 'Cloud Services',
+      description: 'Cloud migration, setup, and management for your business .',
+      price: 'From $20/month'
+    },
+    {
+      icon: <Wrench className="w-8 h-8" />,
+      title: 'Technical Support',
+      description: '24/7 IT support for all IT needs.',
+      price: 'From $25/month'
+    },
+    {
+      icon: <Smartphone className="w-8 h-8" />,
+      title: 'Mobile Solution',
+      description: 'Custom mobile app development and deployment.',
+      price: 'From $30/hour'
+    },
+
+    {
+      icon: <Globe className="w-8 h-8" />,  // Web Development
+      title: 'Web Development',
+      description: 'Professional website design and development services.',
+      price: 'From $40/hour'
+    }
+  ];
+  const reviveServices = [
+    {
+      icon: <Cpu className="w-12 h-12" />,
+      title: 'Hardware Upgrade',
+      description: 'Boost your computer performance with new components.',
+      price: 'From $10'
+    }, {
+      icon: <HardDrive className="w-12 h-12" />,
+      title: 'Data Recovery',
+      description: `Recover lost files and restore your important data.`,
+      price: 'From $15'
+    },
+    {
+      icon: <Monitor className="w-12 h-12" />,
+      title: 'System Optimization',
+      description: 'Clean up and optimize your system for better performance.',
+      price: 'From $20'
+    },
+
+
+
   ];
 
   return (
@@ -69,8 +170,7 @@ const Home = () => {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Join the AI revolution with our $10 monthly modules featuring 30 curated AI tools, 
-              plus earn up to 40% commission through our affiliate program.
+              Join the Al revolution by exploring our monthly modules, which showcase 30 carefully selected Al tools. Plus, take advantage of our affiliate program and earn commissions of up to 40%.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
@@ -115,7 +215,7 @@ const Home = () => {
               Everything You Need to Succeed
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From cutting-edge AI tools to professional services, we provide a complete ecosystem for your digital success.
+              We offer a comprehensive ecosystem that combines advanced Al technologies with expert services, empowering your digital success from very apala
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -135,116 +235,228 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Membership Tiers */}
-      <section className="py-20 bg-white">
+      {/* AI Modules Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Modules</h1>
+          <p className="text-xl text-gray-600">Powerful AI tools to supercharge your projects</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {modules.map((module) => (
+            <div key={module.title} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+              <div className="text-blue-600 mb-4">
+                {module.icon}
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{module.title}</h3>
+              <p className="text-gray-600 mb-4">{module.description}</p>
+
+              <div className="mb-4">
+                <span className="text-2xl font-bold text-gray-900">{module.price}</span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <Link
+                  to="/try-now"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                >
+                  Try Now
+                </Link>
+                <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Need a Custom AI Solution?</h2>
+          <p className="text-gray-600 mb-6">
+            We can build custom AI modules tailored to your specific needs and requirements.
+          </p>
+          <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200">
+            Contact Us
+          </button>
+        </div>
+      </div>
+
+
+      {/* IT Services Section with top margin */}
+      <section className="bg-gray-50 py-20 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Choose Your Membership
-            </h2>
-            <p className="text-xl text-gray-600">
-              Start free and upgrade as you grow your earnings
-            </p>
+          {/* Services Offered */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mt-10">
+            {services.map((service) => (
+              <div key={service.title} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+                <div className="text-blue-600 mb-4">{service.icon}</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-bold text-gray-900">{service.price}</span>
+                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Free Member */}
-            <div className="bg-white p-8 rounded-xl border-2 border-gray-200 hover:border-blue-500 transition-colors duration-300">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Free Member</h3>
-                <div className="text-4xl font-bold text-gray-900 mb-2">$0</div>
-                <div className="text-gray-600">No payment required</div>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>Access to community</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>$1 referral bonus (10%)</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>Basic support</span>
-                </li>
-              </ul>
-              <Link
-                to="/register"
-                className="w-full bg-gray-600 text-white py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors duration-200 block text-center"
+        </div>
+      </section>
+
+      {/* Why Choose Our IT Services Section */}
+      <section className="bg-gray-50 rounded-lg p-8 mb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Choose Our IT Services?</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <h3 className="font-semibold text-gray-900 mb-2">Expert Team</h3>
+              <p className="text-gray-600">Certified professionals with years of experience in IT services.</p>
+            </div>
+            <div className="text-center">
+              <h3 className="font-semibold text-gray-900 mb-2">24/7 Support</h3>
+              <p className="text-gray-600">We offer round-the-clock support for all your IT needs.</p>
+            </div>
+            <div className="text-center">
+              <h3 className="font-semibold text-gray-900 mb-2">Affordable Pricing</h3>
+              <p className="text-gray-600">Enterprise-level services at budget-friendly prices.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Revive Your Technology Section */}
+      <section className="bg-gray-50 py-20 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center mb-6">
+            <RefreshCw className="w-16 h-16 text-blue-600" />
+          </div>
+
+          <h1 className="text-4xl font-bold text-gray-900 mb-4 text-center">
+            Revive Your Technology
+          </h1>
+          <p className="text-xl text-gray-600 text-center mb-8">
+            Bring new life to your old devices with our revival services
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mt-10">
+            {reviveServices.map((service) => (
+              <div
+                key={service.title}
+                className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200"
               >
-                Join Free
-              </Link>
+                <div className="flex justify-center items-center mb-4">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 text-center">{service.title}</h3>
+                <p className="text-gray-600 mb-4 text-center">{service.description}</p>
+
+                {/* Centering the price and the button */}
+                <div className="flex flex-col items-center justify-center">
+                  <span className="text-lg font-bold text-gray-900 mb-4">{service.price}</span>
+                  <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* The Revival Process Section */}
+      <section className="bg-gradient-to-r from-blue-50 to-green-50 py-12 mt-12 max-w-6xl ml-40 mb-10 ">
+        <div className="max-w-5xl mx-auto px-4 sm:px-4 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">The Revival Process</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
+                1
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Diagnosis</h3>
+              <p className="text-gray-600 text-sm">We analyze your device to identify issues</p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
+                2
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Planning</h3>
+              <p className="text-gray-600 text-sm">Create a customized revival plan</p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
+                3
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Revival</h3>
+              <p className="text-gray-600 text-sm">Execute the revival process</p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
+                4
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Testing</h3>
+              <p className="text-gray-600 text-sm">Ensure everything works perfectly</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 mx-auto">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
+            About 10 Dollar Fun
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-12">
+            Making technology accessible and fun for everyone
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8 text-center mb-15">
+            <div className=" p-6 rounded-lg ">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Our Mission</h3>
+              <p className="text-gray-600 text-sm leading-relaxed text-justify">
+                At 10 Dollar Fun, we believe that everyone deserves access to cutting-edge technology and digital services without breaking the bank. Our mission is to provide affordable, high-quality tech solutions that make life easier and more enjoyable.
+              </p>
+
             </div>
 
-            {/* Active FUN Member */}
-            <div className="bg-white p-8 rounded-xl border-2 border-blue-500 hover:border-blue-600 transition-colors duration-300 relative">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                  Most Popular
-                </span>
-              </div>
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Active FUN Member</h3>
-                <div className="text-4xl font-bold text-blue-600 mb-2">$10</div>
-                <div className="text-gray-600">per month</div>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>30 AI tools monthly</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>$4 referral bonus (40%)</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>40% promo page commission</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>Premium support</span>
-                </li>
-              </ul>
-              <Link
-                to="/register"
-                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 block text-center"
-              >
-                Start Now
-              </Link>
+            <div className=" p-6 rounded-lg ">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">What We Offer</h3>
+              <p className="text-gray-600 text-sm leading-relaxed text-justify">
+                From AI-powered tools to comprehensive IT services, we offer a wide range of digital solutions designed to help individuals and businesses thrive in the digital age. All starting at just $10.
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
+            Why Choose Us?
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Affordable</h3>
+              <p className="text-gray-600 text-sm">
+                Quality services starting at just $10
+              </p>
             </div>
 
-            {/* Promo Page */}
-            <div className="bg-white p-8 rounded-xl border-2 border-purple-500 hover:border-purple-600 transition-colors duration-300">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Promo Page</h3>
-                <div className="text-4xl font-bold text-purple-600 mb-2">$10</div>
-                <div className="text-gray-600">per year</div>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>Personalized landing page</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>QR code generation</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>Custom referral link</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-5 h-5 text-green-500 mr-3" />
-                  <span>No hidden fees</span>
-                </li>
-              </ul>
-              <Link
-                to="/promo-page"
-                className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors duration-200 block text-center"
-              >
-                Get Promo Page
-              </Link>
+            <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Reliable</h3>
+              <p className="text-gray-600 text-sm">
+                Proven track record of satisfied customers
+              </p>
+            </div>
+
+            <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Innovative</h3>
+              <p className="text-gray-600 text-sm">
+                Latest technology and AI-powered solutions
+              </p>
             </div>
           </div>
         </div>
@@ -282,6 +494,56 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <section className="py-12 bg-white ">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Welcome to the $10 FUN Program!
+            </h2>
+            <p className="text-xl text-gray-600 mb-6">
+              You’ve just stepped into a world where AI tools meet affiliate magic. Whether you're here to earn, explore, or unleash creativity, you're in the right place!
+            </p>
+          </div>
+
+          <div className="space-y-4 text-left text-lg text-gray-700 mb-6">
+            <div className="flex items-start">
+              <div className="text-green-500 mr-3">✅</div>
+              <p className="text-sm">30 powerful AI tools every month</p>
+            </div>
+            <div className="flex items-start">
+              <div className="text-green-500 mr-3">✅</div>
+              <p className="text-sm">Up to 40% commission on referrals</p>
+            </div>
+            <div className="flex items-start">
+              <div className="text-green-500 mr-3">🌐</div>
+              <p className="text-sm">A global community of creators and affiliates</p>
+            </div>
+            <div className="flex items-start">
+              <div className="text-green-500 mr-3">💻</div>
+              <p className="text-sm">A custom Promo Page that does the selling for you</p>
+            </div>
+            <div className="flex items-start">
+              <div className="text-green-500 mr-3">🎁</div>
+              <p className="text-sm">It starts with just $10... and the possibilities are endless.</p>
+            </div>
+            <div className="flex items-start">
+              <div className="text-green-500 mr-3">✍️</div>
+              <p className="text-sm">Join the Community and have FUN</p>
+            </div>
+            <div className="flex items-start">
+              <div className="text-green-500 mr-3">🚀</div>
+              <p className="text-sm">Your digital side hustle has never looked so vibrant. Let's build something unforgettable.</p>
+            </div>
+          </div>
+
+          <div className="text-left">
+            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition-all duration-200">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </section>
+
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
@@ -310,6 +572,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
     </Layout>
   );
 };

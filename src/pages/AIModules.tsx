@@ -189,6 +189,7 @@ const AIModules = () => {
         </div>
       </div>
     </Layout>
+    
   );
 };
 
