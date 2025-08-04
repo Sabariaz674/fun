@@ -28,7 +28,7 @@ const Header = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <div className="w-14 h-13 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm ml-3">$10 Dollar Fun</span>
+                <span className="text-white font-bold text-sm ml-3">$10 Fun</span>
               </div>
               
             </Link>

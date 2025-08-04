@@ -59,7 +59,7 @@ const Register = () => {
       });
 
       // Redirect to login page after 2 seconds
-      setTimeout(() => navigate('/login'), 2000); // Delay navigation for 2 seconds
+      setTimeout(() => navigate('/membership'), 2000); // Delay navigation for 2 seconds
 
     } catch (error) {
       console.error('Error registering user:', error);

@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { loginUser } from './firebase'; // Import the Firebase login function
 import { Eye, EyeOff } from 'lucide-react';
 import Layout from '../components/Layout';
-import { Link } from 'react-router-dom'; // <-- Add this import
+import { Link } from 'react-router-dom';  // <-- Add this import
 
 const Login = () => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();  // Initialize useNavigate hook
+  const location = useLocation();  // Get the current location (URL)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<{[key: string]: string}>({});
+
+  // Capture the redirect URL from query parameters
+  const redirectUrl = new URLSearchParams(location.search).get('redirect') || '/'; // Default to homepage if no redirect
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -35,7 +39,7 @@ const Login = () => {
       console.log('User logged in:', user);
 
       // Redirect to the page the user clicked on or default to '/membership'
-      navigate('/membership');
+      navigate(redirectUrl);
     } catch (error) {
       console.error('Error logging in:', error);
 
@@ -154,10 +158,7 @@ const Login = () => {
                 Sign in
               </button>
             </div>
-          </form>
-
-          {/* Sign Up Button */}
-          <div className="mt-4 text-center">
+            <div className="mt-4 text-center">
             <Link
               to="/register"
               className="text-sm font-medium text-blue-600 hover:text-blue-500"
@@ -165,6 +166,7 @@ const Login = () => {
               Don't have an account? Sign Up here
             </Link>
           </div>
+          </form>
         </div>
       </div>
     </Layout>
