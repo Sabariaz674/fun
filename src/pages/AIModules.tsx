@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import { Bot, Brain, MessageSquare, Image, Code, BarChart3, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const AIModules = () => {
   const modules = [
@@ -162,14 +163,13 @@ const AIModules = () => {
               )}
 
               <div className="flex items-center justify-between">
-                <a
-                  href={module.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                >
-                  Try Now
-                </a>
+                <Link
+  to={`/login?redirect=${encodeURIComponent(module.url)}`} // Pass the URL as a query parameter
+  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+>
+  Try Now
+</Link>
+
                 <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
                   Learn More
                 </button>
@@ -189,7 +189,6 @@ const AIModules = () => {
         </div>
       </div>
     </Layout>
-    
   );
 };
 

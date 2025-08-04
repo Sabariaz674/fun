@@ -27,12 +27,7 @@ const Home = () => {
     }
   ];
 
-  const stats = [
-    { number: "10,000+", label: "Active Members" },
-    { number: "50+", label: "Countries" },
-    { number: "$2M+", label: "Paid in Commissions" },
-    { number: "95%", label: "Satisfaction Rate" }
-  ];
+  
 
   const testimonials = [
     {
@@ -170,7 +165,7 @@ const Home = () => {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Join the Al revolution by exploring our monthly modules, which showcase 30 carefully selected Al tools. Plus, take advantage of our affiliate program and earn commissions of up to 40%.
+              Be part of the AI revolution by exploring our monthly modules, featuring a curated selection of 30 innovative AI tools. Additionally, benefit from our affiliate program, where we offer an impressive 80% commission on sales—40% for your direct referrals (Level 1) and another 40% for the subsequent level (Level 2).
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
@@ -192,20 +187,7 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       {/* Features Section */}
       <section className="py-20 bg-gray-50">

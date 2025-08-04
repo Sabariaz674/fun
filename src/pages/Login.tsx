@@ -1,16 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";  // Import useNavigate hook
-import Layout from "../components/Layout";
-import { Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom"; 
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from './firebase'; // Import the Firebase login function
+import { Eye, EyeOff } from 'lucide-react';
+import Layout from '../components/Layout';
+import { Link } from 'react-router-dom'; // <-- Add this import
 
 const Login = () => {
-  const navigate = useNavigate();  // Initialize useNavigate hook
+  const navigate = useNavigate(); // Initialize useNavigate hook
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -19,10 +21,35 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-   
+    if (!formData.email || !formData.password) {
+      setErrors({ general: 'Please fill all fields' });
+      return;
+    }
+
+    try {
+      // Call Firebase login function
+      const user = await loginUser(formData.email, formData.password);
+      console.log('User logged in:', user);
+
+      // Redirect to the page the user clicked on or default to '/membership'
+      navigate('/membership');
+    } catch (error) {
+      console.error('Error logging in:', error);
+
+      // Handling Firebase specific errors
+      if (error.code === 'auth/invalid-credential') {
+        setErrors({ general: 'Invalid credentials. Please check your email or password.' });
+      } else if (error.code === 'auth/user-not-found') {
+        setErrors({ general: 'No user found with this email address.' });
+      } else if (error.code === 'auth/wrong-password') {
+        setErrors({ general: 'Incorrect password. Please try again.' });
+      } else {
+        setErrors({ general: 'Login failed. Please try again.' });
+      }
+    }
   };
 
   return (
@@ -39,14 +66,16 @@ const Login = () => {
               Sign in to your account
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
-              Or{" "}
+              Or{' '}
               <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
                 create a new account
               </Link>
             </p>
           </div>
+
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-4">
+              {/* Email Input */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email address
@@ -63,6 +92,8 @@ const Login = () => {
                   placeholder="Enter your email"
                 />
               </div>
+
+              {/* Password Input */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Password
@@ -71,7 +102,7 @@ const Login = () => {
                   <input
                     id="password"
                     name="password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
                     required
                     value={formData.password}
@@ -90,6 +121,10 @@ const Login = () => {
               </div>
             </div>
 
+            {/* Display Errors */}
+            {errors.general && <p className="text-red-600">{errors.general}</p>}
+
+            {/* Remember me and Forgot Password */}
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -110,6 +145,7 @@ const Login = () => {
               </div>
             </div>
 
+            {/* Submit Button */}
             <div>
               <button
                 type="submit"
@@ -119,6 +155,16 @@ const Login = () => {
               </button>
             </div>
           </form>
+
+          {/* Sign Up Button */}
+          <div className="mt-4 text-center">
+            <Link
+              to="/register"
+              className="text-sm font-medium text-blue-600 hover:text-blue-500"
+            >
+              Don't have an account? Sign Up here
+            </Link>
+          </div>
         </div>
       </div>
     </Layout>

@@ -25,7 +25,7 @@ const Membership = () => {
       ],
       buttonText: 'Join Free',
       buttonStyle: 'bg-gray-600 hover:bg-gray-700',
-      onClick: () => navigate('/member-area'),  // Free members are directed to the member area directly
+      onClick: () => navigate('/ai-modules'),  // Free members are directed to the member area directly
     },
     {
       name: 'Active FUN Member',
