@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import { Server, Shield, Cloud, Wrench, Smartphone, Globe, Laptop, Target } from 'lucide-react';  // Additional icons for new services
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 
 const ITServices = () => {
   const services = [
@@ -7,62 +8,62 @@ const ITServices = () => {
       icon: <Server className="w-8 h-8" />,
       title: 'Web Development',
       description: 'Front-end, back-end, and e-commerce development to power your online business.',
-      price: 'From $35/hour'
+      price: 'From $35/hour',
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: 'Cybersecurity',
       description: 'Protect your business with advanced security solutions, including firewalls and encryption.',
-      price: 'From $15/month'
+      price: 'From $15/month',
     },
     {
       icon: <Cloud className="w-8 h-8" />,
       title: 'Cloud Services',
       description: 'Cloud migration, setup, and management for your business to scale and store data securely.',
-      price: 'From $20/month'
+      price: 'From $20/month',
     },
     {
       icon: <Wrench className="w-8 h-8" />,
       title: 'Technical Support & Maintenance',
       description: '24/7 IT support, helpdesk, and preventive maintenance to ensure smooth operations.',
-      price: 'From $25/month'
+      price: 'From $25/month',
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
       title: 'Mobile App Development',
       description: 'Custom mobile app development for Android, iOS, and cross-platform apps.',
-      price: 'From $30/hour'
+      price: 'From $30/hour',
     },
     {
       icon: <Globe className="w-8 h-8" />,
       title: 'Website Design (UI/UX)',
       description: 'Beautiful and user-friendly designs for websites that engage your audience.',
-      price: 'From $40/hour'
+      price: 'From $40/hour',
     },
     {
       icon: <Laptop className="w-8 h-8" />,
       title: 'Custom Software Development',
       description: 'Custom ERP, HRMS, WMS, IMS solutions tailored to your business needs.',
-      price: 'From $50/hour'
+      price: 'From $50/hour',
     },
     {
       icon: <Target className="w-8 h-8" />,
       title: 'Digital Marketing & SEO',
       description: 'Boost your business online with SEO, PPC, content creation, and reputation management.',
-      price: 'From $500/month'
+      price: 'From $500/month',
     },
     // New services added below
     {
       icon: <Server className="w-8 h-8" />,  // Server Management
       title: 'Server Management',
       description: 'Complete server setup, maintenance, and monitoring services for your IT infrastructure.',
-      price: 'From $50/month'
+      price: 'From $50/month',
     },
     {
       icon: <Globe className="w-8 h-8" />,  // Web Development
       title: 'Web Development',
       description: 'Custom websites and web applications tailored to your business needs.',
-      price: 'From $40/hour'
+      price: 'From $40/hour',
     }
   ];
 
@@ -86,29 +87,14 @@ const ITServices = () => {
               <p className="text-gray-600 mb-4">{service.description}</p>
               <div className="flex items-center justify-between">
                 <span className="text-lg font-bold text-gray-900">{service.price}</span>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                <Link to="/register" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
                   Learn More
-                </button>
+                </Link>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Referral Bonuses */}
-        <div className="bg-gray-50 rounded-lg p-8 mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Referral Bonuses</h2>
-          <p className="text-lg text-gray-600 text-center">
-            Earn **10% commission** for referring clients to any of our services. Commission is calculated after the successful completion of the project.
-          </p>
-        </div>
-
-        {/* Development Process */}
-        <div className="bg-gray-50 rounded-lg p-8 mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Development Process</h2>
-          <p className="text-lg text-gray-600 text-center">
-            Our **team** will develop your project in-house, or if needed, we can ask for bids on platforms like **Freelancer** or **Upwork**.
-          </p>
-        </div>
 
         {/* Why Choose Us? */}
         <div className="bg-gray-50 rounded-lg p-8 mb-12">

@@ -1,7 +1,7 @@
-
+import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
-import { useState } from 'react';
+import { db, addDoc, collection } from './firebase'; // Import Firebase functions
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +11,9 @@ const Contact = () => {
     message: ''
   });
 
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -18,11 +21,40 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  // Simple validation
+  if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+    setErrors({ general: 'All fields are required.' });
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    // Log the data before sending
+    console.log('Form Data:', formData);
+
+    // Save the form data to Firestore
+    const docRef = await addDoc(collection(db, "contactMessages"), formData);
+
+    console.log("Document written with ID: ", docRef.id);
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
+    setErrors({});
+    alert('Message sent successfully!');
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    setErrors({ general: 'An error occurred. Please try again later.' });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <Layout>
@@ -94,16 +126,19 @@ const Contact = () => {
               </div>
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-medium"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+              {errors.general && <p className="text-red-600">{errors.general}</p>}
             </form>
           </div>
 
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
-            <div className="space-y-6">
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-gray-900">Contact Information</h2>
+            <div className="space-y-4">
               <div className="flex items-start space-x-4">
                 <Mail className="w-6 h-6 text-blue-600 mt-1" />
                 <div>
@@ -138,6 +173,7 @@ const Contact = () => {
               </div>
             </div>
 
+            {/* Urgent Support Section */}
             <div className="mt-8 bg-gray-50 rounded-lg p-6">
               <h3 className="font-semibold text-gray-900 mb-3">Need immediate help?</h3>
               <p className="text-gray-600 mb-4">

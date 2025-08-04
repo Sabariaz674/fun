@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, User, LogIn } from 'lucide-react';
@@ -11,9 +10,9 @@ const Header = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Membership', href: '/membership' },
-    { name: 'AI Modules', href: '/ai-modules' },
-    { name: 'Affiliate Program', href: '/affiliate-program' },
-    { name: 'IT Services', href: '/it-services' },
+    { name: 'Modules', href: '/ai-modules' },
+    { name: 'Affiliate', href: '/affiliate-program' },
+    { name: 'Services', href: '/it-services' },
     { name: 'Revive', href: '/revive' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Contact', href: '/contact' },
@@ -27,10 +26,10 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-14 h-13 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm ml-3">$10 Fun</span>
+              <div className="w-16 h-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex flex-col justify-between items-center p-2">
+                <span className="text-white font-bold text-xs"> $10 </span>
+                <span className="text-white font-bold text-xs"> Fun </span>
               </div>
-              
             </Link>
           </div>
 
@@ -62,12 +61,13 @@ const Header = () => {
             </Link>
             <Link
               to="/register"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
+              className="w-16 h-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex flex-col justify-between items-center p-2 text-white"
             >
-              Join Now
+              <span className="text-xs">Join</span>
+              <span className="text-xs">Now</span>
             </Link>
           </div>
-
+    
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

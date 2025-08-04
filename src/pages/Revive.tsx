@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import { RefreshCw, Cpu, HardDrive, Monitor, Globe, DollarSign } from 'lucide-react';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 
 const Revive = () => {
   // State to manage the selected language for cloning
@@ -97,9 +98,12 @@ const Revive = () => {
                   </select>
                 </div>
               )}
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+              <Link 
+                to="/register" 
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+              >
                 Get Started
-              </button>
+              </Link>
             </div>
           ))}
         </div>

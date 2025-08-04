@@ -169,14 +169,14 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
-                to="/register"
+                to="/"
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 flex items-center space-x-2"
               >
                 <span>Start Your Journey</span>
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
-                to="/ai-modules"
+                to="/"
                 className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg text-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-200"
               >
                 Explore Modules
@@ -197,7 +197,7 @@ const Home = () => {
               Everything You Need to Succeed
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We offer a comprehensive ecosystem that combines advanced Al technologies with expert services, empowering your digital success from very apala
+              We offer a comprehensive ecosystem that combines advanced Al technologies with expert services, empowering your digital success from the beginning to a successful completion.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -239,7 +239,7 @@ const Home = () => {
 
               <div className="flex items-center justify-between">
                 <Link
-                  to="/try-now"
+                  to="/register"
                   className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
                 >
                   Try Now
@@ -256,14 +256,15 @@ const Home = () => {
           <p className="text-gray-600 mb-6">
             We can build custom AI modules tailored to your specific needs and requirements.
           </p>
-          <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200">
-            Contact Us
-          </button>
+         <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200">
+  <Link to="/contact" className="w-full h-full">Contact Us</Link>  {/* Wrap with Link */}
+</button>
         </div>
       </div>
 
 
       {/* IT Services Section with top margin */}
+        {/* Services Section */}
       <section className="bg-gray-50 py-20 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Services Offered */}
@@ -274,17 +275,19 @@ const Home = () => {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
                 <p className="text-gray-600 mb-4">{service.description}</p>
                 <div className="flex items-center justify-between">
-
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                  {/* Learn More Button redirecting to the /register page */}
+                  <Link
+                    to="/register"  // This will render the /register page
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                  >
                     Learn More
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-
       {/* Why Choose Our IT Services Section */}
       <section className="bg-gray-50 rounded-lg p-8 mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -322,7 +325,7 @@ const Home = () => {
             Bring new life to your old devices with our revival services
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mt-10">
+           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mt-10">
             {reviveServices.map((service) => (
               <div
                 key={service.title}
@@ -336,10 +339,13 @@ const Home = () => {
 
                 {/* Centering the price and the button */}
                 <div className="flex flex-col items-center justify-center">
-
-                  <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                  {/* Use Link to navigate to /register page */}
+                  <Link
+                    to="/register"  // Navigate to /register page
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-center"
+                  >
                     Learn More
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -527,8 +533,8 @@ const Home = () => {
 
           <div className="text-left">
             <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition-all duration-200">
-              Learn More
-            </button>
+  <Link to="/register" className="text-white">Learn More</Link>
+</button>
           </div>
         </div>
       </section>

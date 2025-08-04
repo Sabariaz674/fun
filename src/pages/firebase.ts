@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc,addDoc,collection } from "firebase/firestore";
 
 // Your Firebase config
 const firebaseConfig = {
@@ -53,3 +53,4 @@ export const loginUser = async (email: string, password: string) => {
   }
 };
 export { db };
+export{addDoc,collection}
