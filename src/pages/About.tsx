@@ -136,7 +136,7 @@ const About = () => {
         </div>
 
         {/* Company Info */}
-        <div className="bg-gray-50 rounded-lg p-8 text-center">
+        <div className="bg-gray-55 rounded-lg p-8 text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">About Our Company</h2>
           <div className="max-w-2xl mx-auto">
             <p className="text-gray-600 mb-4">
