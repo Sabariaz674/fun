@@ -144,45 +144,13 @@ const Contact = () => {
                 <div>
                   <h3 className="font-semibold text-gray-900">Email</h3>
                   <p className="text-gray-600">support@10dollarfun.com</p>
-                  <p className="text-gray-600">sales@10dollarfun.com</p>
+                 
                 </div>
               </div>
-              <div className="flex items-start space-x-4">
-                <Phone className="w-6 h-6 text-blue-600 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
-                  <p className="text-gray-600">+1 (555) 765-4321</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <MapPin className="w-6 h-6 text-blue-600 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Address</h3>
-                  <p className="text-gray-600">123 Tech Street</p>
-                  <p className="text-gray-600">San Francisco, CA 94105</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <Clock className="w-6 h-6 text-blue-600 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Business Hours</h3>
-                  <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                  <p className="text-gray-600">Saturday - Sunday: 10:00 AM - 4:00 PM</p>
-                </div>
-              </div>
+              
             </div>
 
-            {/* Urgent Support Section */}
-            <div className="mt-8 bg-gray-50 rounded-lg p-6">
-              <h3 className="font-semibold text-gray-900 mb-3">Need immediate help?</h3>
-              <p className="text-gray-600 mb-4">
-                For urgent technical issues, use our live chat feature or call our emergency support line.
-              </p>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
-                Start Live Chat
-              </button>
-            </div>
+           
           </div>
         </div>
       </div>

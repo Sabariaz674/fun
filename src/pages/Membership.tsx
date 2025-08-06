@@ -1,157 +1,147 @@
-import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
-import { Check, Star, Zap, Crown } from 'lucide-react';  // Icons
+import {
+  DollarSign,
+  Users,
+  TrendingUp,
+  Gift,
+  Star,
+  Target,
+  Globe,
+  Award
+} from 'lucide-react';
+
 const Membership = () => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
-  
-  // Define the plans and their features
-  const plans = [
+  const benefits = [
     {
-      name: 'Free Member',
-      price: '$0',
-      period: '',
-      description: 'Perfect for getting started with our community',
-      features: [
-        'Access to community forums',
-        '$1 referral bonus (10% commission)',
-        'Basic support',
-        'Monthly newsletter',
-        'Access to free resources'
-      ],
-      limitations: [
-        'No AI tool access',
-        'Limited support',
-        'Basic referral rate'
-      ],
-      buttonText: 'Join Free',
-      buttonStyle: 'bg-gray-600 hover:bg-gray-700',
-      onClick: () => navigate('/ai-modules'),  // Free members are directed to the member area directly
+      icon: <DollarSign className="w-8 h-8" />,
+      title: "High Commissions",
+      description:
+        "Earn up to 40% commission on every referral - one of the highest rates in the industry."
     },
     {
-      name: 'Active FUN Member',
-      price: '$10',
-      period: '/month',
-      description: 'Our most popular plan with full AI tool access',
-      features: [
-        '30 curated AI tools monthly',
-        '$4 referral bonus (40% commission)',
-        '40% commission on promo page sales',
-        'Premium support',
-        'Priority community access',
-        'Exclusive member resources',
-        'Monthly live Q&A sessions',
-        'Early access to new tools'
-      ],
-      limitations: [],
-      buttonText: 'Start Now',
-      buttonStyle: 'bg-blue-600 hover:bg-blue-700',
-      popular: true,
-      icon: <Zap className="w-5 h-5" />,
-      onClick: () => navigate('/payment'),  // Paid users are directed to the payment page
+      icon: <Users className="w-8 h-8" />,
+      title: "Multiple Income Streams",
+      description:
+        "Earn from memberships, promo pages, and IT services referrals."
     },
     {
-      name: 'Promo Page',
-      price: '$10',
-      period: '/year',
-      description: 'Get your personalized marketing page',
-      features: [
-        'Personalized landing page',
-        'QR code generation',
-        'Custom referral link',
-        'Advanced tracking & analytics',
-        'No recurring monthly fees',
-        'Custom branding options',
-        'Mobile-optimized design',
-        'SEO optimization'
-      ],
-      limitations: [
-        'One-time setup fee',
-        'Requires Active FUN membership for full benefits'
-      ],
-      buttonText: 'Get Promo Page',
-      buttonStyle: 'bg-purple-600 hover:bg-purple-700',
-      icon: <Crown className="w-5 h-5" />,
-      onClick: () => navigate('/payment'),  // Promo page users are also directed to the payment page
+      icon: <TrendingUp className="w-8 h-8" />,
+      title: "Recurring Revenue",
+      description:
+        "Build sustainable income with monthly recurring commissions."
+    },
+    {
+      icon: <Gift className="w-8 h-8" />,
+      title: "Instant Payouts",
+      description:
+        "Fast payment processing via PayPal, bank transfer, or cryptocurrency."
+    },
+    {
+      icon: <Target className="w-8 h-8" />,
+      title: "Marketing Support",
+      description:
+        "Professional marketing materials, banners, and promotional content."
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: "Global Reach",
+      description:
+        "Promote to audiences in 50+ countries with localized support."
     }
   ];
 
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Choose Your Plan</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Start free and upgrade as you grow. Get access to 30 AI tools monthly plus earn
-            up to 40% commission on referrals.
+        {/* "Why Join Our Program?" Section */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+            Why Join Our Program?
+          </h2>
+          <p className="text-xl font-medium text-gray-700 text-center mb-8">
+            Become part of our thriving community, where members are earning monthly income with $10 FUN.
           </p>
+          <p className="text-xl font-medium text-gray-700 text-center mb-8">
+            Begin your journey at no cost and upgrade as you grow.
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {benefits.map((benefit, index) => (
+              <div
+                key={index}
+                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="text-blue-600 mb-4">{benefit.icon}</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  {benefit.title}
+                </h3>
+                <p className="text-gray-600">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Pricing Plans */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {plans.map((plan, index) => (
-            <div
-              key={index}
-              className={`rounded-lg p-8 ${
-                plan.popular
-                  ? "bg-gradient-to-b from-blue-50 to-purple-50 border-2 border-blue-500 relative transform scale-105"
-                  : "bg-white border border-gray-200"
-              } hover:shadow-xl transition-all duration-300`}
-            >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center space-x-1">
-                    <Star className="w-4 h-4" />
-                    <span>Most Popular</span>
-                  </span>
-                </div>
-              )}
 
-              <div className="text-center mb-6">
-                <div className="flex items-center justify-center mb-2">
-                  <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
-                  {plan.icon && <span className="ml-2 text-blue-600">{plan.icon}</span>}
-                </div>
-                <div className="text-4xl font-bold text-gray-900 mb-1">
-                  {plan.price}
-                  {plan.period && <span className="text-lg text-gray-600">{plan.period}</span>}
-                </div>
-                <p className="text-gray-600 text-sm">{plan.description}</p>
-              </div>
 
-              <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3">What's Included:</h4>
-                <ul className="space-y-2">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <Check className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600 text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        {/* "How It Works" Section */}
+        <div className="bg-gray-50 py-12 px-6 rounded-lg mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+            Learn More – This is How It Works
+          </h2>
+          <div className="space-y-6 text-lg text-gray-700">
+            <p>
+              🌐 <strong>We pay out a whopping 80 percent Referral Bonus</strong>
+            </p>
+            <p>✅ To our active FUN Members</p>
+            <p>
+              🌐 If you are a FUN Member, when members order a $10 AI Module
+              <br />
+              ✅ You will earn a $4 referral bonus level 1, and $4 on level 2.
+            </p>
+            <p>
+              🌐 When members order a $10 Promo Page.
+              <br />
+              ✅ You will earn a $4 referral bonus on two tiers.
+            </p>
+            <p>
+              🌐 When members order previous modules at $2.50,
+              <br />
+              ✅ Every member (also Free members) receives a $0.50 referral bonus on two tiers.
+            </p>
+            <p>
+              🌐 If any of your referrals orders IT services,
+              <br />
+              ✅ You will get a 10% commission.
+            </p>
+          </div>
+        </div>
 
-              {plan.limitations.length > 0 && (
-                <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">Limitations:</h4>
-                  <ul className="space-y-2">
-                    {plan.limitations.map((limitation, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <span className="text-red-500 mr-2 mt-0.5">•</span>
-                        <span className="text-gray-600 text-sm">{limitation}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <button
-                onClick={plan.onClick} // Add the onClick function for navigation
-                className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 text-white ${plan.buttonStyle}`}
-              >
-                {plan.buttonText}
-              </button>
-            </div>
-          ))}
+        {/* "Leadership Bonus" Section */}
+        <div className="bg-gray-50 py-12 px-6 rounded-lg mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+            Qualify for the Leadership Bonus:
+          </h2>
+          <div className="space-y-6 text-lg text-gray-700">
+            <p>
+              🌐 <strong>Refer 10+ new FUN Members</strong>
+              <br />
+              ✅ A $5 leadership bonus + Fun Bronze badge
+            </p>
+            <p>
+              🌐 Refer 20+ new FUN Members
+              <br />
+              ✅ A $10 leadership bonus + Fun Silver badge
+            </p>
+            <p>
+              🌐 Refer 30 new FUN Members
+              <br />
+              ✅ A $15 leadership bonus + Fun Gold badge
+            </p>
+            <p>
+              🌐 Every additional 10 FUN members you refer
+              <br />
+              ✅ You will receive a Referral bonus of $5
+            </p>
+          </div>
         </div>
       </div>
     </Layout>

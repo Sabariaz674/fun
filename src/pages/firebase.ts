@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { getFirestore, doc, setDoc,addDoc,collection } from "firebase/firestore";
+import { getFirestore, doc, setDoc, collection, addDoc } from "firebase/firestore";
 
-// Your Firebase config
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDv5G-RwB4i_IG2ApN2GA9S85G2qsAqdno",
   authDomain: "fun-game-d6a4f.firebaseapp.com",
@@ -16,24 +16,21 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Get Firebase services
+// Firebase services
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Firebase functions
-export const registerUser = async (email: string, password: string, username: string, country: string) => {
+// Register user function
+export const registerUser = async (email: string, password: string, username: string, country: string, referrer: string) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
-    // Save additional user data (e.g., username, country) in Firestore
-    await setDoc(doc(db, "users", user.uid), {
-      username,
-      country,
-      email,
-    });
+    // Save user data to Firestore
+    const userData = { username, country, email, referrer };
+    await setDoc(doc(db, "users", user.uid), userData);
 
-    // Send email verification to the user
+    // Send email verification
     await sendEmailVerification(user);
     console.log('Verification email sent to:', user.email);
 
@@ -44,13 +41,15 @@ export const registerUser = async (email: string, password: string, username: st
   }
 };
 
+// Login user function
 export const loginUser = async (email: string, password: string) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    return userCredential.user;
+    return userCredential.user; // Returns the logged-in user object
   } catch (error) {
-    throw error;
+    console.error("Login error:", error);
+    throw error; // Propagate the error to be caught in the component
   }
 };
-export { db };
-export{addDoc,collection}
+
+export { db, addDoc, collection, sendEmailVerification };

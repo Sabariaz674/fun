@@ -1,8 +1,42 @@
-
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, MessageCircle, Mail } from 'lucide-react';
+import playNowImage from '../../public/playNowImage.jpeg';
+import React, { useState } from 'react';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  // Handle email input change
+  const handleInputChange = (e) => {
+    setEmail(e.target.value);
+    setError(''); // Clear any previous error when the user starts typing
+  };
+
+  // Handle form submission
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+
+    // Validate email
+    if (!email) {
+      setError('Please enter an email address');
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    // Simulate email submission (this would usually be an API call)
+    setTimeout(() => {
+      setSuccess(true);
+      setEmail('');
+    }, 1000);
+  };
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -16,7 +50,7 @@ const Footer = () => {
               <span className="text-xl font-bold">10 Dollar Fun</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
-              Take the Highway to Fun! Join our AI-powered affiliate program offering curated AI tool modules, 
+              Take the Highway to Fun! Join our AI-powered affiliate program offering curated AI tool modules,
               referral bonuses, IT services, and the Revive program.
             </p>
             <div className="mb-4">
@@ -68,6 +102,8 @@ const Footer = () => {
               <li><Link to="/it-services" className="text-gray-400 hover:text-white transition-colors duration-200">IT Services</Link></li>
               <li><Link to="/revive" className="text-gray-400 hover:text-white transition-colors duration-200">Revive Program</Link></li>
               <li><Link to="/promo-page" className="text-gray-400 hover:text-white transition-colors duration-200">Promo Page</Link></li>
+              <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors duration-200">Contact Us</Link></li>
+              <li><Link to="/faq" className="text-gray-400 hover:text-white transition-colors duration-200">FAQ</Link></li>
             </ul>
           </div>
 
@@ -80,8 +116,9 @@ const Footer = () => {
               <li><Link to="/cookie-policy" className="text-gray-400 hover:text-white transition-colors duration-200">Cookie Policy</Link></li>
               <li><Link to="/dmca" className="text-gray-400 hover:text-white transition-colors duration-200">DMCA</Link></li>
               <li><Link to="/aml-policy" className="text-gray-400 hover:text-white transition-colors duration-200">AML Policy</Link></li>
-              <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors duration-200">Contact Us</Link></li>
-              <li><Link to="/faq" className="text-gray-400 hover:text-white transition-colors duration-200">FAQ</Link></li>
+              <li><Link to="/ccpa" className="text-gray-400 hover:text-white transition-colors duration-200">CCPA</Link></li>
+              <li><Link to="/income-disclaimer" className="text-gray-400 hover:text-white transition-colors duration-200">Income Disclaimer</Link></li>
+              <li><Link to="/legal-disclaimer" className="text-gray-400 hover:text-white transition-colors duration-200">Legal Disclaimer</Link></li>
             </ul>
           </div>
         </div>
@@ -91,12 +128,16 @@ const Footer = () => {
           <div className="bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg p-4 text-center">
             <p className="text-black font-semibold mb-2">Try Your Luck with LottaWin!</p>
             <a
-              href="https://lottawin.com/fun"
+              href="https://lottawin.net/fun"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-black text-white px-6 py-2 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 inline-block"
+              className="inline-block"
             >
-              Play Now
+              <img
+                src={playNowImage}
+                alt="Play Now"
+                className="h-12 w-auto hover:opacity-90 transition-opacity duration-200"
+              />
             </a>
           </div>
         </div>
@@ -106,16 +147,44 @@ const Footer = () => {
           <p className="text-gray-400 text-sm">
             © 2025 Free Universal Network LLC. All rights reserved.
           </p>
-          <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link to="/income-disclaimer" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
-              Income Disclaimer
-            </Link>
-            <Link to="/legal-disclaimer" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
-              Legal Disclaimer
-            </Link>
-            <Link to="/ccpa" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
-              CCPA
-            </Link>
+
+          <div className="mt-8 md:mt-0 md:flex flex-col items-start px-4 md:px-0">
+            <h2 className="text-lg font-semibold text-white-900 mb-2">Subscribe to our Newsletter</h2>
+
+            <div className="mb-4">
+              <strong>Features:</strong>
+              <p className="text-sm text-white-600">
+                Bi-weekly newsletter with AI module tips <br />
+                tips, feature updates, bonuses, and <br />
+                community stories.
+              </p>
+            </div>
+
+            {/* Newsletter Subscription Form */}
+            <div className="flex">
+              <input
+                type="email"
+                id="newsletter-email"
+                placeholder="Your email"
+                value={email}
+                onChange={handleInputChange}
+                className="w-64 p-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+              />
+              <button
+                onClick={handleSubscribe}
+                className="p-3 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              >
+                Subscribe
+              </button>
+            </div>
+
+            {/* Error or Success Message */}
+            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+            {success && (
+              <p className="text-green-500 text-sm mt-2">
+                Thank you for subscribing! Please check your inbox for a confirmation email.
+              </p>
+            )}
           </div>
         </div>
       </div>

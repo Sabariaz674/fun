@@ -2,6 +2,7 @@
 import Layout from '../components/Layout';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import {Link} from 'react-router-dom'
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -81,9 +82,9 @@ const FAQ = () => {
           <p className="text-gray-600 mb-6">
             Can't find the answer you're looking for? Our support team is here to help.
           </p>
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200">
-            Contact Support
-          </button>
+         <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200">
+                     <Link to="/contact" className="w-full h-full">Contact Support</Link>  {/* Wrap with Link */}
+                   </button>
         </div>
       </div>
     </Layout>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
+import { Link } from 'react-router-dom';
 import {
   DollarSign,
   Users,
@@ -193,12 +194,12 @@ const AffiliateProgram = () => {
             free and upgrade as you grow!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200">
-              Join Free Now
-            </button>
-            <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors duration-200">
-              Learn More
-            </button>
+           <Link to="/register">
+  <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200">
+    Join Free Now
+  </button>
+</Link>
+            
           </div>
         </div>
 

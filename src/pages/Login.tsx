@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { loginUser } from './firebase'; // Import the Firebase login function
 import { Eye, EyeOff } from 'lucide-react';
 import Layout from '../components/Layout';
-import { Link } from 'react-router-dom';  // <-- Add this import
+import { Link } from 'react-router-dom'; 
+import { toast } from 'react-toastify'; // <-- Add this import
 
 const Login = () => {
   const navigate = useNavigate();  // Initialize useNavigate hook
@@ -34,8 +35,14 @@ const Login = () => {
       const user = await loginUser(formData.email, formData.password);
       console.log('User logged in:', user);
 
-      // Redirect to the dashboard or home page after successful login
-      navigate('/membership');
+      // Check if the user's email is verified
+      if (user.emailVerified) {
+        // Redirect to the dashboard or home page after successful login
+        navigate('/membership');
+      } else {
+        setErrors({ general: 'Please verify your email address before logging in.' });
+        toast.error('Email is not verified. Please check your inbox and verify your email.');
+      }
     } catch (error) {
       console.error('Error logging in:', error);
 

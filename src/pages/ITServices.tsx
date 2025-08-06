@@ -87,9 +87,7 @@ const ITServices = () => {
               <p className="text-gray-600 mb-4">{service.description}</p>
               <div className="flex items-center justify-between">
                 <span className="text-lg font-bold text-gray-900">{service.price}</span>
-                <Link to="/register" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
-                  Learn More
-                </Link>
+                
               </div>
             </div>
           ))}

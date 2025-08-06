@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from './firebase'; // Import the Firebase registration function
+import { registerUser, sendEmailVerification } from './firebase'; // Firebase functions
 import { toast } from 'react-toastify'; // Import react-toastify for toasts
 import { User, AlertCircle, Mail, MapPin, Users } from 'lucide-react'; // Import necessary icons
 import Layout from '../components/Layout'; // Your custom Layout component
 import { Link } from 'react-router-dom';  // Add this import for linking to Login page
+import Modal from 'react-modal'; // For the modal popup
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -14,9 +15,12 @@ const Register = () => {
     confirmPassword: '',
     country: '',
     referrer: '', // Referral field
+    acceptedTerms: false,  // Add acceptedTerms state
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [modalIsOpen, setModalIsOpen] = useState(false); // For showing the modal after registration
+  const [isProcessing, setIsProcessing] = useState(false); // To prevent multiple form submissions
   const navigate = useNavigate();  // To navigate to login after registration
 
   // Country list
@@ -33,38 +37,91 @@ const Register = () => {
     setErrors(prev => ({ ...prev, [name]: '' })); // Clear errors as user types
   };
 
+  // Handle checkbox change
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, acceptedTerms: e.target.checked }));
+  };
+
   // Handle form submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Prevent multiple form submissions
+    if (isProcessing) return;
+
+    setIsProcessing(true);
+
     // Validation
     if (formData.password !== formData.confirmPassword) {
       setErrors({ confirmPassword: 'Passwords do not match' });
+      setIsProcessing(false);
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setErrors({ password: 'Password must be at least 6 characters long' });
+      setIsProcessing(false);
       return;
     }
 
     if (!formData.email || !formData.password || !formData.username || !formData.country) {
       setErrors({ general: 'Please fill all fields' });
+      setIsProcessing(false);
+      return;
+    }
+
+    if (!formData.acceptedTerms) {
+      setErrors({ terms: 'You must accept the Terms, Privacy, and Income Disclaimer' });
+      setIsProcessing(false);
       return;
     }
 
     try {
-      // Call Firebase registration function
-      const user = await registerUser(formData.email, formData.password, formData.username, formData.country, formData.referrer);
+      // Pass the referrer field as well
+      const user = await registerUser(
+        formData.email, 
+        formData.password, 
+        formData.username, 
+        formData.country, 
+        formData.referrer  // Pass referrer here
+      );
       console.log('User registered successfully:', user);
 
-      // Show success toast message
-      toast.success('We have sent you a welcome email. If it does not appear in your main inbox, please check your spam or junk folder..', {
-        autoClose: 2000, // Show for 2 seconds
-      });
+      try {
+        // Check if user exists before sending verification email
+        if (user) {
+          await sendEmailVerification(user);
+          console.log('Verification email sent to:', user.email);
 
-      // Redirect to login page after 2 seconds
-      setTimeout(() => navigate('/membership'), 2000); // Delay navigation for 2 seconds
+          // Show success message
+          toast.success('A verification email has been sent to your inbox. Please check your inbox and verify your email.', {
+            autoClose: 5000, // Show for 5 seconds
+          });
+
+          // Open modal informing the user to check email
+          setModalIsOpen(true);
+
+          // Redirect to login page after a small delay (if modal is closed or after a few seconds)
+          setTimeout(() => {
+            navigate('/login'); // Redirect to login page
+          }, 3000); // Wait for 3 seconds before redirecting
+
+        } else {
+          console.error('User object is null');
+          toast.error('User not found. Please try again.');
+        }
+      } catch (verificationError) {
+        console.error('We have sent you a welcome message to your email. If you can’t find it, check your spam folder.:', verificationError);
+        toast.error('We have sent you a welcome message to your email. If you can’t find it, check your spam folder After Confirmation please login.');
+      } finally {
+        setIsProcessing(false);  // Enable submission again after verification attempt
+      }
 
     } catch (error) {
       console.error('Error registering user:', error);
       setErrors({ general: 'Registration failed. Please try again.' });
       toast.error('Registration failed. Please try again.');
+      setIsProcessing(false);  // Enable submission again if registration fails
     }
   };
 
@@ -88,23 +145,16 @@ const Register = () => {
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
                   Username *
                 </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.username ? 'border-red-500' : 'border-gray-300'}`}
-                    placeholder="Enter your username"
-                  />
-                </div>
-                {errors.username && (
-                  <div className="flex items-center mt-1 text-red-600 text-sm">
-                    <AlertCircle className="w-4 h-4 mr-1" />
-                    {errors.username}
-                  </div>
-                )}
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.username ? 'border-red-500' : 'border-gray-300'}`}
+                  placeholder="Enter your username"
+                />
+                {errors.username && <p className="text-red-600">{errors.username}</p>}
               </div>
 
               {/* Email Field */}
@@ -112,24 +162,16 @@ const Register = () => {
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                   Email Address *
                 </label>
-                <div className="relative">
-                  <Mail className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
-                    placeholder="Enter your email address"
-                  />
-                </div>
-                {errors.email && (
-                  <div className="flex items-center mt-1 text-red-600 text-sm">
-                    <AlertCircle className="w-4 h-4 mr-1" />
-                    {errors.email}
-                  </div>
-                )}
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+                  placeholder="Enter your email address"
+                />
+                {errors.email && <p className="text-red-600">{errors.email}</p>}
               </div>
 
               {/* Password Field */}
@@ -137,23 +179,16 @@ const Register = () => {
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                   Password *
                 </label>
-                <div className="relative">
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    className={`w-full px-4 pr-12 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
-                    placeholder="Enter your password"
-                  />
-                </div>
-                {errors.password && (
-                  <div className="flex items-center mt-1 text-red-600 text-sm">
-                    <AlertCircle className="w-4 h-4 mr-1" />
-                    {errors.password}
-                  </div>
-                )}
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
+                  placeholder="Enter your password"
+                />
+                {errors.password && <p className="text-red-600">{errors.password}</p>}
               </div>
 
               {/* Confirm Password Field */}
@@ -161,23 +196,16 @@ const Register = () => {
                 <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
                   Confirm Password *
                 </label>
-                <div className="relative">
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleInputChange}
-                    className={`w-full px-4 pr-12 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'}`}
-                    placeholder="Confirm your password"
-                  />
-                </div>
-                {errors.confirmPassword && (
-                  <div className="flex items-center mt-1 text-red-600 text-sm">
-                    <AlertCircle className="w-4 h-4 mr-1" />
-                    {errors.confirmPassword}
-                  </div>
-                )}
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'}`}
+                  placeholder="Confirm your password"
+                />
+                {errors.confirmPassword && <p className="text-red-600">{errors.confirmPassword}</p>}
               </div>
 
               {/* Country Selection */}
@@ -185,27 +213,19 @@ const Register = () => {
                 <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
                   Country *
                 </label>
-                <div className="relative">
-                  <MapPin className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
-                  <select
-                    id="country"
-                    name="country"
-                    value={formData.country}
-                    onChange={handleInputChange}
-                    className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.country ? 'border-red-500' : 'border-gray-300'}`}
-                  >
-                    <option value="">Select your country</option>
-                    {countries.map(country => (
-                      <option key={country} value={country}>{country}</option>
-                    ))}
-                  </select>
-                </div>
-                {errors.country && (
-                  <div className="flex items-center mt-1 text-red-600 text-sm">
-                    <AlertCircle className="w-4 h-4 mr-1" />
-                    {errors.country}
-                  </div>
-                )}
+                <select
+                  id="country"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.country ? 'border-red-500' : 'border-gray-300'}`}
+                >
+                  <option value="">Select your country</option>
+                  {countries.map(country => (
+                    <option key={country} value={country}>{country}</option>
+                  ))}
+                </select>
+                {errors.country && <p className="text-red-600">{errors.country}</p>}
               </div>
 
               {/* Referral Username (Optional) */}
@@ -213,28 +233,42 @@ const Register = () => {
                 <label htmlFor="referrer" className="block text-sm font-medium text-gray-700 mb-2">
                   Referrer Username (Optional)
                 </label>
-                <div className="relative">
-                  <Users className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
-                  <input
-                    type="text"
-                    id="referrer"
-                    name="referrer"
-                    value={formData.referrer}
-                    onChange={handleInputChange}
-                    className="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter referrer username"
-                  />
-                </div>
+                <input
+                  type="text"
+                  id="referrer"
+                  name="referrer"
+                  value={formData.referrer}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Enter referrer username"
+                />
               </div>
+
+              {/* Terms Acceptance Checkbox */}
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="acceptTerms"
+                  name="acceptTerms"
+                  checked={formData.acceptedTerms}
+                  onChange={handleCheckboxChange}
+                  className="mr-2"
+                />
+                <label htmlFor="acceptTerms" className="text-sm text-gray-600">
+                  I accept the <a href="/terms" className="text-blue-600">Terms</a>, <a href="/privacy" className="text-blue-600">Privacy</a>, and <a href="/income-disclaimer" className="text-blue-600">Income Disclaimer</a>.
+                </label>
+              </div>
+              {errors.terms && <p className="text-red-600">{errors.terms}</p>}
 
               {/* Display errors */}
               {errors.general && <p className="text-red-600">{errors.general}</p>}
 
               <button
                 type="submit"
+                disabled={isProcessing}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
               >
-                Complete Registration
+                {isProcessing ? 'Processing...' : 'Complete Registration'}
               </button>
             </form>
 
@@ -249,6 +283,24 @@ const Register = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal: Confirmation Message */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Registration Success"
+      >
+        <div className="p-6 text-center">
+          <h2 className="text-2xl font-semibold text-green-600 mb-4">Registration Successful!</h2>
+          <p className="text-gray-600 mb-6">We've sent a verification link to your email. Please check your inbox and verify your email address to start using your account.</p>
+          <button
+            onClick={() => setModalIsOpen(false)}
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all duration-200"
+          >
+            OK
+          </button>
+        </div>
+      </Modal>
     </Layout>
   );
 };

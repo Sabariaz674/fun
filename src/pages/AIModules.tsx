@@ -169,9 +169,7 @@ const AIModules = () => {
                 >
                   Try Now
                 </Link>
-                <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                  Learn More
-                </button>
+      
               </div>
             </div>
           ))}
@@ -183,7 +181,7 @@ const AIModules = () => {
             We can build custom AI modules tailored to your specific needs and requirements.
           </p>
           <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200">
-            Contact Us
+            <Link to="/contact" className="w-full h-full">Contact Us</Link>  {/* Wrap with Link */}
           </button>
         </div>
       </div>

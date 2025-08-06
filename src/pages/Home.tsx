@@ -1,33 +1,70 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Users, DollarSign, Zap, Shield, Globe, Bot, Brain, MessageSquare, Image, Code, BarChart3, Server, RefreshCw, Cloud, Wrench, Smartphone, Cpu, Monitor, HardDrive } from 'lucide-react';
 import Layout from '../components/Layout';
+import React, { useState } from 'react';
 
 const Home = () => {
+
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('English');  // Default language
+  const [cloningPrice, setCloningPrice] = useState<number>(500); // Default price for cloning
+
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const language = e.target.value;
+    setSelectedLanguage(language);
+
+    // Set price based on language
+    if (language === 'Spanish' || language === 'English') {
+      setCloningPrice(500);  // Base price
+    } else {
+      setCloningPrice(800);  // Different price for other languages (e.g., specialized translations)
+    }
+  };
+
+  const reviveproject = [
+    {
+      icon: <Cpu className="w-12 h-12" />,
+      title: 'Complete WordPress Redesigns',
+      description: 'Complete website redesigns using modern technologies and graphics for a fresh look and feel.',
+
+    },
+    {
+      icon: <Monitor className="w-12 h-12" />,
+      title: 'Performance & Design Upgrades',
+      description: 'Enhance the design and performance of your website for both desktop and mobile devices.',
+
+    },
+    {
+      icon: <Globe className="w-12 h-12" />,
+      title: 'Cloned Site in Another Language',
+      description: `Cloning your site into another language (e.g., ${selectedLanguage}) to reach international audiences.`,
+      price: `$${cloningPrice} (one-time fee)`
+    }
+  ];
 
   const features = [
     {
       icon: <Zap className="w-8 h-8 text-blue-600" />,
       title: "AI Tool Modules",
-      description: "Discover 30 carefully selected Al tools each your business processes. Boost your efficieny and stay ahead of the competition."
+      description: "Explore every month 30 expertly curated AI tool modules, each tailored to optimize different aspects of your business operations or personal use. Enhance your efficiency and maintain a competitive edge with these powerful solutions."
     },
     {
       icon: <DollarSign className="w-8 h-8 text-green-600" />,
       title: "Affiliate Earnings",
-      description: "Maximize your earning potential with our affiliate program, which offers up to a 40% commission on each referral. Build a reliable, recurring income stream by partnering with us."
+      description: "Maximize your earning potential through our affiliate program, which offers commissions of up to 40% for every referral and 40% on your second level. Establish a steady, recurring income stream by partnering with us and expanding our community. "
     },
     {
       icon: <Shield className="w-8 h-8 text-purple-600" />,
       title: " Fun IT Services",
-      description: "Our IT services encompass expert web development, app creation, and digital marketing solutions, all with competitive rates and attractive referral incentives."
+      description: "Our comprehensive IT offerings include professional web development, custom app creation, and digital marketing strategies, all provided at competitive prices. Plus, benefit from appealing referral bonuses that make collaboration even more rewarding."
     },
     {
       icon: <Globe className="w-8 h-8 text-indigo-600" />,
       title: "Revive Program",
-      description: "Our Revive Program offers free redesigns for WordPress sites, with advanced technologies and options for international. expansion. Or, how about we build a completely new WordPress site from scratch?"
+      description: "Our Revive Program provides a free redesign for your WordPress website, leveraging advanced technologies and offering options for international growth. Alternatively, we can develop a brand-new WordPress site tailored to your specific needs from the ground up."
     }
   ];
 
-  
+
 
   const testimonials = [
     {
@@ -151,6 +188,7 @@ const Home = () => {
 
   ];
 
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -167,27 +205,13 @@ const Home = () => {
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Be part of the AI revolution by exploring our monthly modules, featuring a curated selection of 30 innovative AI tools. Additionally, benefit from our affiliate program, where we offer an impressive 80% commission on sales—40% for your direct referrals (Level 1) and another 40% for the subsequent level (Level 2).
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                to="/"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 flex items-center space-x-2"
-              >
-                <span>Start Your Journey</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                to="/"
-                className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg text-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-200"
-              >
-                Explore Modules
-              </Link>
-            </div>
+
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-     
+
 
       {/* Features Section */}
       <section className="py-20 bg-gray-50">
@@ -219,53 +243,56 @@ const Home = () => {
 
       {/* AI Modules Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Modules</h1>
-          <p className="text-xl text-gray-600">Powerful AI tools to supercharge your projects</p>
+  <div className="text-center mb-12">
+    <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Modules</h1>
+    <p className="text-xl text-gray-600">Powerful AI tools to supercharge your projects</p>
+  </div>
+
+  <div className="grid md:grid-cols-2 gap-8">
+    {modules.map((module) => (
+      <div key={module.title} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+        <div className="text-blue-600 mb-4">
+          {module.icon}
         </div>
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">{module.title}</h3>
+        <p className="text-gray-600 mb-4">{module.description}</p>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {modules.map((module) => (
-            <div key={module.title} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
-              <div className="text-blue-600 mb-4">
-                {module.icon}
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">{module.title}</h3>
-              <p className="text-gray-600 mb-4">{module.description}</p>
-
-              <div className="mb-4">
-
-              </div>
-
-              <div className="flex items-center justify-between">
-                <Link
-                  to="/register"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                >
-                  Try Now
-                </Link>
-                <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                  Learn More
-                </button>
-              </div>
-            </div>
-          ))}
+        <div className="mb-4">
+          {/* Add any additional content or buttons here if needed */}
         </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Choose Your Plan Section */}
+  <div className="text-center mt-20 mb-20">
+    <h2 className="text-3xl font-bold text-gray-900 mb-4">Choose Your Plan</h2>
+    <p className="text-xl text-gray-600">Register today for free, and select your preferred membership in your new $10 fun member area.</p>
+  </div>
+
+
+
         <div className="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Need a Custom AI Solution?</h2>
           <p className="text-gray-600 mb-6">
             We can build custom AI modules tailored to your specific needs and requirements.
           </p>
-         <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200">
-  <Link to="/contact" className="w-full h-full">Contact Us</Link>  {/* Wrap with Link */}
-</button>
+          <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200">
+            <Link to="/contact" className="w-full h-full">Contact Us</Link>  {/* Wrap with Link */}
+          </button>
         </div>
       </div>
 
 
       {/* IT Services Section with top margin */}
-        {/* Services Section */}
+      {/* Services Section */}
       <section className="bg-gray-50 py-20 mt-12">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            IT Services to Empower Your Business
+          </h1>
+          <p className="text-xl text-gray-600">Comprehensive IT solutions that ensure your business runs smoothly and grows.</p>
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Services Offered */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mt-10">
@@ -274,15 +301,7 @@ const Home = () => {
                 <div className="text-blue-600 mb-4">{service.icon}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
                 <p className="text-gray-600 mb-4">{service.description}</p>
-                <div className="flex items-center justify-between">
-                  {/* Learn More Button redirecting to the /register page */}
-                  <Link
-                    to="/register"  // This will render the /register page
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                  >
-                    Learn More
-                  </Link>
-                </div>
+
               </div>
             ))}
           </div>
@@ -319,13 +338,13 @@ const Home = () => {
           </div>
 
           <h1 className="text-4xl font-bold text-gray-900 mb-4 text-center">
-            Revive Your Technology
+            Technology Improvements
           </h1>
           <p className="text-xl text-gray-600 text-center mb-8">
             Bring new life to your old devices with our revival services
           </p>
 
-           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mt-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mt-10">
             {reviveServices.map((service) => (
               <div
                 key={service.title}
@@ -338,65 +357,61 @@ const Home = () => {
                 <p className="text-gray-600 mb-4 text-center">{service.description}</p>
 
                 {/* Centering the price and the button */}
-                <div className="flex flex-col items-center justify-center">
-                  {/* Use Link to navigate to /register page */}
-                  <Link
-                    to="/register"  // Navigate to /register page
-                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-center"
-                  >
-                    Learn More
-                  </Link>
-                </div>
+
               </div>
             ))}
           </div>
         </div>
       </section>
-
-
-      {/* The Revival Process Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-green-50 py-12 mt-12 max-w-6xl mx-auto mb-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">The Revival Process</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {/* Step 1 */}
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
-                1
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Diagnosis</h3>
-              <p className="text-gray-600 text-sm sm:text-base">We analyze your device to identify issues</p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
-                2
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Planning</h3>
-              <p className="text-gray-600 text-sm sm:text-base">Create a customized revival plan</p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
-                3
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Revival</h3>
-              <p className="text-gray-600 text-sm sm:text-base">Execute the revival process</p>
-            </div>
-
-            {/* Step 4 */}
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-xl mx-auto mb-4">
-                4
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Testing</h3>
-              <p className="text-gray-600 text-sm sm:text-base">Ensure everything works perfectly</p>
-            </div>
-          </div>
+      <div className="text-center mb-12">
+        <div className="flex justify-center mb-6">
+          <RefreshCw className="w-16 h-16 text-blue-600" />
         </div>
-      </section>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">The Revive Project</h1>
+        <p className="text-xl text-gray-600">Bring new life to your dusty WordPress site with our revival services</p>
+      </div>
+
+      {/* Services Offered */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {reviveproject.map((service) => (
+          <div key={service.title} className="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-lg transition-shadow duration-200">
+            <div className="text-blue-600 flex justify-center mb-4">
+              {service.icon}
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+            <p className="text-gray-600 mb-4">{service.description}</p>
+
+
+            {/* Check if service title is 'Cloned Site in Another Language' */}
+            {service.title === "Cloned Site in Another Language" && (
+              <div className="mb-4">
+                {/* Language Selection Dropdown */}
+                <select
+                  value={selectedLanguage}
+                  onChange={handleLanguageChange}
+                  className="border rounded-lg p-2"
+                >
+                  <option value="English">English</option>
+                  <option value="Spanish">Spanish</option>
+                  <option value="French">French</option>
+                  <option value="German">German</option>
+                  {/* Add more languages as needed */}
+                </select>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Place the "Get Started" button below the cards */}
+      <div className="flex justify-center mt-8">
+        <Link
+          to="/"
+          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+        >
+          Get Started
+        </Link>
+      </div>
 
       <section className="py-16 mx-auto">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -531,11 +546,6 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="text-left">
-            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition-all duration-200">
-  <Link to="/register" className="text-white">Learn More</Link>
-</button>
-          </div>
         </div>
       </section>
 
@@ -557,12 +567,6 @@ const Home = () => {
             >
               <Users className="w-5 h-5" />
               <span>Join Now - It's Free!</span>
-            </Link>
-            <Link
-              to="/affiliate-program"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-200"
-            >
-              Learn More
             </Link>
           </div>
         </div>
