@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { registerUser, sendEmailVerification } from './firebase'; // Firebase functions
-import { toast } from 'react-toastify'; // Import react-toastify for toasts
-import { User, AlertCircle, Mail, MapPin, Users } from 'lucide-react'; // Import necessary icons
-import Layout from '../components/Layout'; // Your custom Layout component
-import { Link } from 'react-router-dom';  // Add this import for linking to Login page
-import Modal from 'react-modal'; // For the modal popup
+import { useNavigate, Link } from 'react-router-dom';
+import { registerUser, sendEmailVerification } from './firebase';
+import { toast } from 'react-toastify';
+import { User } from 'lucide-react';
+import Layout from '../components/Layout';
+import Modal from 'react-modal';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -14,114 +13,138 @@ const Register = () => {
     password: '',
     confirmPassword: '',
     country: '',
-    referrer: '', // Referral field
-    acceptedTerms: false,  // Add acceptedTerms state
+    referrer: '',
+    acceptedTerms: false,
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [modalIsOpen, setModalIsOpen] = useState(false); // For showing the modal after registration
-  const [isProcessing, setIsProcessing] = useState(false); // To prevent multiple form submissions
-  const navigate = useNavigate();  // To navigate to login after registration
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [referralLink, setReferralLink] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  // Country list
   const countries = [
     'United States', 'Canada', 'United Kingdom', 'Germany', 'France', 'Spain', 'Italy',
     'Netherlands', 'Belgium', 'Sweden', 'Norway', 'Denmark', 'Finland', 'Australia',
     'New Zealand', 'Japan', 'South Korea', 'Singapore', 'India', 'Brazil', 'Mexico'
   ];
 
-  // Handle input changes
+  // Input change handler
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    setErrors(prev => ({ ...prev, [name]: '' })); // Clear errors as user types
+    setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
-  // Handle checkbox change
+  // Checkbox change handler
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({ ...prev, acceptedTerms: e.target.checked }));
   };
 
-  // Handle form submit
+  // Form submit handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Prevent multiple form submissions
     if (isProcessing) return;
-
     setIsProcessing(true);
+    setErrors({});
 
-    // Validation
+    // Username validation
+    const usernamePattern = /^[a-zA-Z0-9_]{3,20}$/;
+    if (!usernamePattern.test(formData.username) || formData.username.startsWith('_')) {
+      setErrors({ username: 'Username must be 3-20 characters long and can only contain letters, digits, and underscores (no underscore at the start)' });
+      setIsProcessing(false);
+      return;
+    }
+
+    // Email validation
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(formData.email)) {
+      setErrors({ email: 'Please enter a valid email address' });
+      setIsProcessing(false);
+      return;
+    }
+
+    // Password validation
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$%&!?+]).{8,20}$/;
+    if (!passwordPattern.test(formData.password)) {
+      setErrors({ password: 'Password must be 8-20 characters long, contain at least one lowercase letter, one uppercase letter, one digit, and one special character ($%&!?+)' });
+      setIsProcessing(false);
+      return;
+    }
+
+    // Confirm password validation
     if (formData.password !== formData.confirmPassword) {
       setErrors({ confirmPassword: 'Passwords do not match' });
       setIsProcessing(false);
       return;
     }
 
-    if (formData.password.length < 6) {
-      setErrors({ password: 'Password must be at least 6 characters long' });
-      setIsProcessing(false);
-      return;
-    }
-
+    // General validation for empty fields
     if (!formData.email || !formData.password || !formData.username || !formData.country) {
       setErrors({ general: 'Please fill all fields' });
       setIsProcessing(false);
       return;
     }
 
+    // Terms acceptance validation
     if (!formData.acceptedTerms) {
       setErrors({ terms: 'You must accept the Terms, Privacy, and Income Disclaimer' });
       setIsProcessing(false);
       return;
     }
 
+    // Referrer validation (Required if not empty)
+    if (!formData.referrer.trim()) {
+      setErrors({ referrer: 'Please fill in a valid Referrer Username' });
+      setIsProcessing(false);
+      return;
+    }
+
     try {
-      // Pass the referrer field as well
       const user = await registerUser(
-        formData.email, 
-        formData.password, 
-        formData.username, 
-        formData.country, 
-        formData.referrer  // Pass referrer here
+        formData.email,
+        formData.password,
+        formData.username,
+        formData.country,
+        formData.referrer
       );
-      console.log('User registered successfully:', user);
+      setReferralLink(user.referralLink); // <-- yahan referralLink state me save hota hai
 
-      try {
-        // Check if user exists before sending verification email
-        if (user) {
-          await sendEmailVerification(user);
-          console.log('Verification email sent to:', user.email);
-
-          // Show success message
-          toast.success('A verification email has been sent to your inbox. Please check your inbox and verify your email.', {
-            autoClose: 5000, // Show for 5 seconds
-          });
-
-          // Open modal informing the user to check email
-          setModalIsOpen(true);
-
-          // Redirect to login page after a small delay (if modal is closed or after a few seconds)
-          setTimeout(() => {
-            navigate('/login'); // Redirect to login page
-          }, 3000); // Wait for 3 seconds before redirecting
-
-        } else {
-          console.error('User object is null');
-          toast.error('User not found. Please try again.');
-        }
-      } catch (verificationError) {
-        console.error('We have sent you a welcome message to your email. If you can’t find it, check your spam folder.:', verificationError);
-        toast.error('We have sent you a welcome message to your email. If you can’t find it, check your spam folder After Confirmation please login.');
-      } finally {
-        setIsProcessing(false);  // Enable submission again after verification attempt
+      if (!user) {
+        setErrors({ general: 'Registration failed. Please try again.' });
+        toast.error('Registration failed. Please try again.');
+        setIsProcessing(false);
+        return;
       }
 
-    } catch (error) {
-      console.error('Error registering user:', error);
-      setErrors({ general: 'Registration failed. Please try again.' });
-      toast.error('Registration failed. Please try again.');
-      setIsProcessing(false);  // Enable submission again if registration fails
+      try {
+  // Attempt to send the email verification
+  await sendEmailVerification(user);
+
+  // If successful, show success message
+  toast.success('A verification email has been sent to your inbox. Please check your inbox and verify your email.', {
+    autoClose: 5000,
+  });
+} catch (verificationError) {
+  // Only show a warning if it is a real issue, like network failure.
+  if (verificationError.code === 'auth/network-request-failed') {
+    toast.warn('Network issue: Verification email could not be sent. Please check your internet connection and try again.');
+  } else {
+    // Log the error for debugging purposes
+    console.error('Verification error details:', verificationError);
+
+    // Show a warning but don't confuse the user
+    toast.warn('A verification email has been sent to your inbox. Please check your inbox and verify your email.');
+  }
+}
+
+
+      setModalIsOpen(true);
+      setIsProcessing(false);
+    } catch (error: any) {
+      setErrors({ general: error?.message || 'Registration failed. Please try again.' });
+      toast.error(error?.message || 'Registration failed. Please try again.');
+      setIsProcessing(false);
     }
   };
 
@@ -230,19 +253,40 @@ const Register = () => {
 
               {/* Referral Username (Optional) */}
               <div>
-                <label htmlFor="referrer" className="block text-sm font-medium text-gray-700 mb-2">
-                  Referrer Username (Optional)
-                </label>
-                <input
-                  type="text"
-                  id="referrer"
-                  name="referrer"
-                  value={formData.referrer}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Enter referrer username"
-                />
-              </div>
+  <label htmlFor="referrer" className="block text-sm font-medium text-gray-700 mb-2">
+    Referrer Username (Optional)
+  </label>
+  <input
+    type="text"
+    id="referrer"
+    name="referrer"
+    value={formData.referrer}
+    onChange={handleInputChange}
+    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.referrer ? 'border-red-500' : 'border-gray-300'}`}
+    placeholder="Enter referrer username"
+  />
+  {errors.referrer && <p className="text-red-600">{errors.referrer}</p>}
+
+  {/* Suggestions if referrer is blank */}
+  {!formData.referrer && formData.username && (
+    <div className="text-xs text-blue-600 mt-1">
+      <span>Add this to invite your friends!</span>
+      <div className="mt-1">
+        <span className="font-semibold">Your referral link:</span>
+        <div className="break-all">{`https://10dollar.fun/?ref=${formData.username}`}</div>
+        <div className="mt-1 text-gray-500">
+          Suggestions:
+          <ul className="list-disc ml-5">
+            <li>{`https://10dollar.fun/?ref=${formData.username}123`}</li>
+            <li>{`https://10dollar.fun/?ref=${formData.username}_official`}</li>
+            <li>{`https://10dollar.fun/?ref=${formData.username}ai`}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
+
 
               {/* Terms Acceptance Checkbox */}
               <div className="flex items-center">
@@ -293,8 +337,28 @@ const Register = () => {
         <div className="p-6 text-center">
           <h2 className="text-2xl font-semibold text-green-600 mb-4">Registration Successful!</h2>
           <p className="text-gray-600 mb-6">We've sent a verification link to your email. Please check your inbox and verify your email address to start using your account.</p>
+          {referralLink && (
+            <div className="mb-4">
+              <span className="font-semibold">Your Referral Link:</span>
+              <div className="flex items-center justify-center gap-2 mt-2">
+                <span className="break-all text-blue-600">{referralLink}</span>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(referralLink);
+                    toast.success("Referral link copied!");
+                  }}
+                  className="ml-2 px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm"
+                >
+                  Copy
+                </button>
+              </div>
+            </div>
+          )}
           <button
-            onClick={() => setModalIsOpen(false)}
+            onClick={() => {
+              setModalIsOpen(false);
+              navigate('/login');
+            }}
             className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all duration-200"
           >
             OK

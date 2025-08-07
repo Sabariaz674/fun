@@ -27,14 +27,11 @@ export const registerUser = async (email: string, password: string, username: st
     const user = userCredential.user;
 
     // Save user data to Firestore
-    const userData = { username, country, email, referrer };
+    const referralLink = `https://10dollar.fun/?ref=${username}`;
+    const userData = { username, country, email, referrer, referralLink };
     await setDoc(doc(db, "users", user.uid), userData);
 
-    // Send email verification
-    await sendEmailVerification(user);
-    console.log('Verification email sent to:', user.email);
-
-    return user;
+    return { ...user, referralLink }; // <-- Bas yahi return rakhain
   } catch (error) {
     console.error('Error during registration:', error);
     throw error;
