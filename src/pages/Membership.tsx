@@ -85,22 +85,25 @@ const Membership = () => {
         {/* "How It Works" Section */}
         <div className="bg-gray-50 py-12 px-6 rounded-lg mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-            Learn More – This is How It Works
+             This is How It Works
           </h2>
           <div className="space-y-6 text-lg text-gray-700">
             <p>
-              🌐 <strong>We pay out a whopping 80 percent Referral Bonus</strong>
+             
             </p>
-            <p>✅ To our active FUN Members</p>
+            
             <p>
-              🌐 If you are a FUN Member, when members order a $10 AI Module
-              <br />
-              ✅ You will earn a $4 referral bonus level 1, and $4 on level 2.
+              🌐 pay out a whopping 80 percent Referral Bonus<br/>
+              ✅ To our active FUN Members<br/></p>
+              <p>
+
+              🌐when members order a $10 AI Module<br/>
+              ✅ You will earn a $4 referral bonus level 1 and $4 on level 2
             </p>
             <p>
-              🌐 When members order a $10 Promo Page.
+              🌐 When members order a $10 Promo Page
               <br />
-              ✅ You will earn a $4 referral bonus on two tiers.
+              ✅ You will earn a $4 referral  bonus at level 1 and $4 on level 2
             </p>
             <p>
               🌐 When members order previous modules at $2.50,

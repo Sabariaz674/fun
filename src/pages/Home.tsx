@@ -76,7 +76,7 @@ const Home = () => {
     {
       name: "Vicky – Kenya ",
       role: "Nurse",
-      content: "The affiliate program is incredible. I'm earning $2,000+ monthly just by sharing tools I already use.",
+      content: "The affiliate program is incredible. I'm earning money just by sharing AI tools I already use.",
       rating: 5
     },
     {
@@ -243,32 +243,37 @@ const Home = () => {
 
       {/* AI Modules Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div className="text-center mb-12">
-    <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Modules</h1>
-    <p className="text-xl text-gray-600">Powerful AI tools to supercharge your projects</p>
-  </div>
-
-  <div className="grid md:grid-cols-2 gap-8">
-    {modules.map((module) => (
-      <div key={module.title} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
-        <div className="text-blue-600 mb-4">
-          {module.icon}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Modules</h1>
+          <p className="text-xl text-gray-600">A selection of AI tools from the module of the month</p>
         </div>
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">{module.title}</h3>
-        <p className="text-gray-600 mb-4">{module.description}</p>
 
-        <div className="mb-4">
-          {/* Add any additional content or buttons here if needed */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {modules.map((module) => (
+            <div key={module.title} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+              <div className="text-blue-600 mb-4">
+                {module.icon}
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{module.title}</h3>
+              <p className="text-gray-600 mb-4">{module.description}</p>
+
+              <div className="mb-4">
+                {/* Add any additional content or buttons here if needed */}
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
 
-  {/* Choose Your Plan Section */}
-  <div className="text-center mt-20 mb-20">
-    <h2 className="text-3xl font-bold text-gray-900 mb-4">Choose Your Plan</h2>
-    <p className="text-xl text-gray-600">Register today for free, and select your preferred membership in your new $10 fun member area.</p>
-  </div>
+        {/* Choose Your Plan Section */}
+        <div className="text-center mt-20 mb-20">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Choose Your Plan</h2>
+          <p className="text-xl text-gray-600">Register today for free, and select your preferred membership in your new $10 fun member area.</p>
+          <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-11 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 mt-6">
+            <Link to="/register" className="w-full h-full">Free</Link>
+          </button>
+        </div>
+
+
 
 
 
@@ -371,47 +376,23 @@ const Home = () => {
         <p className="text-xl text-gray-600">Bring new life to your dusty WordPress site with our revival services</p>
       </div>
 
-      {/* Services Offered */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-        {reviveproject.map((service) => (
-          <div key={service.title} className="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-lg transition-shadow duration-200">
-            <div className="text-blue-600 flex justify-center mb-4">
-              {service.icon}
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
-            <p className="text-gray-600 mb-4">{service.description}</p>
-
-
-            {/* Check if service title is 'Cloned Site in Another Language' */}
-            {service.title === "Cloned Site in Another Language" && (
-              <div className="mb-4">
-                {/* Language Selection Dropdown */}
-                <select
-                  value={selectedLanguage}
-                  onChange={handleLanguageChange}
-                  className="border rounded-lg p-2"
-                >
-                  <option value="English">English</option>
-                  <option value="Spanish">Spanish</option>
-                  <option value="French">French</option>
-                  <option value="German">German</option>
-                  {/* Add more languages as needed */}
-                </select>
-              </div>
-            )}
-          </div>
-        ))}
+  {reviveproject.map((service) => (
+    <div key={service.title} className="bg-white rounded-lg shadow-md p-8 text-center hover:shadow-lg transition-shadow duration-200">
+      <div className="text-blue-600 flex justify-center mb-4">
+        {service.icon}
       </div>
+      <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+      <p className="text-gray-600 mb-4">{service.description}</p>
+      
+      {/* Add "Get Started" button */}
+      <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 mt-4">
+        Get Started
+      </button>
+    </div>
+  ))}
+</div>
 
-      {/* Place the "Get Started" button below the cards */}
-      <div className="flex justify-center mt-8">
-        <Link
-          to="/"
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-        >
-          Get Started
-        </Link>
-      </div>
 
       <section className="py-16 mx-auto">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -480,7 +461,8 @@ const Home = () => {
               What Our Members Say
             </h2>
             <p className="text-xl text-gray-600">
-              Join thousands of satisfied members earning with 10 Dollar Fun
+              Join our community  of satisfied members earning with 10 Dollar Fun
+
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -522,27 +504,31 @@ const Home = () => {
             </div>
             <div className="flex items-start">
               <div className="text-green-500 mr-3">✅</div>
-              <p className="text-sm">Up to 40% commission on referrals</p>
+              <p className="text-sm">Up to 80% commission on referrals</p>
             </div>
             <div className="flex items-start">
-              <div className="text-green-500 mr-3">🌐</div>
+              <div className="text-green-500 mr-3">✅</div>
               <p className="text-sm">A global community of creators and affiliates</p>
             </div>
             <div className="flex items-start">
-              <div className="text-green-500 mr-3">💻</div>
-              <p className="text-sm">A custom Promo Page that does the selling for you</p>
+              <div className="text-green-500 mr-3">✅</div>
+              <p className="text-sm">A custom promo page that does the selling for you</p>
             </div>
             <div className="flex items-start">
-              <div className="text-green-500 mr-3">🎁</div>
-              <p className="text-sm">It starts with just $10... and the possibilities are endless.</p>
+              <div className="text-green-500 mr-3">✅</div>
+              <p className="text-sm">It starts with just $10 ... and the possibilities are endless.</p>
             </div>
             <div className="flex items-start">
-              <div className="text-green-500 mr-3">✍️</div>
-              <p className="text-sm">Join the Community and have FUN</p>
+              <div className="text-green-500 mr-3">✅</div>
+              <p className="text-sm">Join the 10$ community and have FUN</p>
             </div>
             <div className="flex items-start">
-              <div className="text-green-500 mr-3">🚀</div>
+              <div className="text-green-500 mr-3">✅</div>
               <p className="text-sm">Your digital side hustle has never looked so vibrant. Let's build something unforgettable.</p>
+            </div>
+            <div className="flex items-start">
+              <div className="text-green-500 mr-3">✅</div>
+              <p className="text-sm">Let's build something unforgettable.</p>
             </div>
           </div>
 
@@ -557,8 +543,7 @@ const Home = () => {
             Ready to Start Your Journey?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Join thousands of members who are already earning with our AI-powered affiliate program.
-            Start free today and upgrade as you grow!
+            Join the members who are already earning with our AI-powered affiliate program. Start free today and upgrade as you grow!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link

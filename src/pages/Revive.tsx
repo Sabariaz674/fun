@@ -25,20 +25,20 @@ const Revive = () => {
     {
       icon: <Cpu className="w-12 h-12" />,
       title: 'Complete WordPress Redesigns',
-      description: 'Complete website redesigns using modern technologies and graphics for a fresh look and feel.',
+      description: 'We’ll completely redesign your site by using modern technologies and graphics for a fresh look and feel.',
       price: 'Free'
     },
     {
       icon: <Monitor className="w-12 h-12" />,
       title: 'Performance & Design Upgrades',
-      description: 'Enhance the design and performance of your website for both desktop and mobile devices.',
+      description: 'We’ll enhance the design and performance of your website for both desktop and mobile devices..',
       price: 'Free'
     },
     {
       icon: <Globe className="w-12 h-12" />,
-      title: 'Cloned Site in Another Language',
-      description: `Cloning your site into another language (e.g., ${selectedLanguage}) to reach international audiences.`,
-      price: `$${cloningPrice} (one-time fee)`
+      title: 'Version in Another Language',
+      description: `We’ll be creating your site also in another language (e.g., English) to reach an international audience.`,
+      price: 'Free'
     }
   ];
 
@@ -69,7 +69,7 @@ const Revive = () => {
             <RefreshCw className="w-16 h-16 text-blue-600" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Revive Your Technology</h1>
-          <p className="text-xl text-gray-600">Bring new life to your old devices with our revival services</p>
+          <p className="text-xl text-gray-600">Bring new life to your dusty old WordPress site with our revival services</p>
         </div>
 
         {/* Services Offered */}
@@ -82,22 +82,7 @@ const Revive = () => {
               <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
               <p className="text-gray-600 mb-4">{service.description}</p>
               <div className="text-2xl font-bold text-gray-900 mb-4">{service.price}</div>
-              {service.title === "Cloned Site in Another Language" && (
-                <div className="mb-4">
-                  {/* Language Selection Dropdown */}
-                  <select
-                    value={selectedLanguage}
-                    onChange={handleLanguageChange}
-                    className="border rounded-lg p-2"
-                  >
-                    <option value="English">English</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="French">French</option>
-                    <option value="German">German</option>
-                    {/* Add more languages as needed */}
-                  </select>
-                </div>
-              )}
+              
               <Link 
                 to="/register" 
                 className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"

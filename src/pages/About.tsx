@@ -87,19 +87,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* Achievements */}
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 mb-16">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Our Impact</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">{achievement.number}</div>
-                <div className="text-gray-600 font-medium">{achievement.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* What We Offer */}
         <div className="mb-16">
           <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">What We Offer</h2>
@@ -140,12 +127,7 @@ const About = () => {
           <h2 className="text-2xl font-semibold text-gray-900 mb-4">About Our Company</h2>
           <div className="max-w-2xl mx-auto">
             <p className="text-gray-600 mb-4">
-              10 Dollar Fun is operated by Free Universal Network LLC, a company registered in Wyoming, USA. 
-              We're committed to transparency, innovation, and creating value for our global community.
-            </p>
-            <p className="text-gray-600 mb-6">
-              Our team consists of experienced entrepreneurs, AI specialists, and marketing professionals 
-              dedicated to helping you succeed in the digital economy.
+              10 Dollar Fun is operated by Free Universal Network. We're committed to transparency, innovation, and creating value for our global community. Our team consists of experienced entrepreneurs, AI specialists, and marketing professionals dedicated to helping you succeed in the digital world.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

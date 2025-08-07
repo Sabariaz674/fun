@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, MessageCircle, Mail } from 'lucide-react';
-import playNowImage from '../../public/playNowImage.jpeg';
+import playNowImage from '../../public/playNowImage.png';
 import React, { useState } from 'react';
 
 const Footer = () => {
@@ -44,19 +44,22 @@ const Footer = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">$10</span>
-              </div>
-              <span className="text-xl font-bold">10 Dollar Fun</span>
+
+
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
-              Take the Highway to Fun! Join our AI-powered affiliate program offering curated AI tool modules,
-              referral bonuses, IT services, and the Revive program.
+              Take the Highway to Fun! Join our AI-powered affiliate program offering curated AI tool modules, referral bonuses, IT services, and the Revive program.
             </p>
             <div className="mb-4">
-              <p className="text-sm text-gray-400">Free Universal Network LLC</p>
-              <p className="text-sm text-gray-400">Registered in Wyoming, USA</p>
-              <p className="text-sm text-gray-400">Email: support@10dollar.fun</p>
+              <p className="text-sm text-gray-400">Email: <a href="mailto:support@10dollar.fun" className="text-blue-600">support@10dollar.fun</a></p>
+              <p className="text-sm text-gray-400 mt-10">Free Universal Network LLC</p>
+              <p className="text-sm text-gray-400">30 N Gould Street, Suite 35925</p>
+              <p className="text-sm text-gray-400 ">Sheridan, WY 82801, United States</p>
+              <p className="text-sm text-gray-400">Registration Number: 2023-001293701</p>
+              <p className="text-sm text-gray-400">Registration Date: July 3, 2023</p>
+              <p className="text-sm text-gray-400">EIN Number: 93-2517710</p>
+              
+
             </div>
             <div className="flex space-x-4">
               <a
@@ -154,18 +157,16 @@ const Footer = () => {
             <div className="mb-4">
               <strong>Features:</strong>
               <p className="text-sm text-white-600">
-                Bi-weekly newsletter with AI module tips <br />
-                tips, feature updates, bonuses, and <br />
-                community stories.
+                Monthly newsletter with AI tool tips, featured updates, and community stories.
               </p>
             </div>
 
             {/* Newsletter Subscription Form */}
             <div className="flex">
               <input
-                type="email"
+                type=" Enter your email address"
                 id="newsletter-email"
-                placeholder="Your email"
+                placeholder="Enter your email address"
                 value={email}
                 onChange={handleInputChange}
                 className="w-64 p-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
