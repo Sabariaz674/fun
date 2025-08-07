@@ -44,22 +44,20 @@ const Footer = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-
-
+              
+              <span className="text-xl font-bold">10 Dollar Fun</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
-              Take the Highway to Fun! Join our AI-powered affiliate program offering curated AI tool modules, referral bonuses, IT services, and the Revive program.
+             Take the Highway to Fun! Join our AI-powered affiliate program offering curated AI tool modules, referral bonuses, IT services, and the Revive program.
             </p>
             <div className="mb-4">
-              <p className="text-sm text-gray-400">Email: <a href="mailto:support@10dollar.fun" className="text-blue-600">support@10dollar.fun</a></p>
               <p className="text-sm text-gray-400 mt-10">Free Universal Network LLC</p>
               <p className="text-sm text-gray-400">30 N Gould Street, Suite 35925</p>
               <p className="text-sm text-gray-400 ">Sheridan, WY 82801, United States</p>
               <p className="text-sm text-gray-400">Registration Number: 2023-001293701</p>
               <p className="text-sm text-gray-400">Registration Date: July 3, 2023</p>
               <p className="text-sm text-gray-400">EIN Number: 93-2517710</p>
-              
-
+              <p className="text-sm text-gray-400">Email: <a href="mailto:support@10dollar.fun" className="text-blue-600">support@10dollar.fun</a></p>
             </div>
             <div className="flex space-x-4">
               <a
