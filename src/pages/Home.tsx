@@ -385,10 +385,7 @@ const Home = () => {
       <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
       <p className="text-gray-600 mb-4">{service.description}</p>
       
-      {/* Add "Get Started" button */}
-      <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 mt-4">
-        Get Started
-      </button>
+      
     </div>
   ))}
 </div>

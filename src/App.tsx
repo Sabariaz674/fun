@@ -1,8 +1,12 @@
-import { Toaster } from "@/components/ui/toaster";  // Your custom Toaster component
-import { Toaster as Sonner } from "@/components/ui/sonner";  // Another custom Toaster component
+import { useEffect } from 'react';
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -27,23 +31,34 @@ import CCPA from "./pages/CCPA";
 import NotFound from "./pages/NotFound";
 import Paymentpage from "./pages/PaymentPage";
 
-// Import ToastContainer from react-toastify
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Ensure this CSS is included for toast styling
-
 const queryClient = new QueryClient();
+
+/**
+ * This component listens for changes in the URL path and automatically
+ * scrolls the window to the top of the page. It's placed inside the
+ * BrowserRouter to have access to the useLocation hook.
+ */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Scroll to the top of the page whenever the URL pathname changes.
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      {/* Custom Toast Providers */}
       <Toaster />
       <Sonner />
-
-      {/* ToastContainer for react-toastify */}
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
 
       <BrowserRouter>
+        {/* Place the ScrollToTop component here, inside the BrowserRouter but before the Routes. */}
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
@@ -67,8 +82,6 @@ const App = () => (
           <Route path="/legal-disclaimer" element={<LegalDisclaimer />} />
           <Route path="/ccpa" element={<CCPA />} />
           <Route path="/payment" element={<Paymentpage />} />
-
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

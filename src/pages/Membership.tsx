@@ -83,69 +83,7 @@ const Membership = () => {
 
 
         {/* "How It Works" Section */}
-        <div className="bg-gray-50 py-12 px-6 rounded-lg mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-             This is How It Works
-          </h2>
-          <div className="space-y-6 text-lg text-gray-700">
-            <p>
-             
-            </p>
-            
-            <p>
-              🌐 pay out a whopping 80 percent Referral Bonus<br/>
-              ✅ To our active FUN Members<br/></p>
-              <p>
-
-              🌐when members order a $10 AI Module<br/>
-              ✅ You will earn a $4 referral bonus level 1 and $4 on level 2
-            </p>
-            <p>
-              🌐 When members order a $10 Promo Page
-              <br />
-              ✅ You will earn a $4 referral  bonus at level 1 and $4 on level 2
-            </p>
-            <p>
-              🌐 When members order previous modules at $2.50,
-              <br />
-              ✅ Every member (also Free members) receives a $0.50 referral bonus on two tiers.
-            </p>
-            <p>
-              🌐 If any of your referrals orders IT services,
-              <br />
-              ✅ You will get a 10% commission.
-            </p>
-          </div>
-        </div>
-
-        {/* "Leadership Bonus" Section */}
-        <div className="bg-gray-50 py-12 px-6 rounded-lg mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-            Qualify for the Leadership Bonus:
-          </h2>
-          <div className="space-y-6 text-lg text-gray-700">
-            <p>
-              🌐 <strong>Refer 10+ new FUN Members</strong>
-              <br />
-              ✅ A $5 leadership bonus + Fun Bronze badge
-            </p>
-            <p>
-              🌐 Refer 20+ new FUN Members
-              <br />
-              ✅ A $10 leadership bonus + Fun Silver badge
-            </p>
-            <p>
-              🌐 Refer 30 new FUN Members
-              <br />
-              ✅ A $15 leadership bonus + Fun Gold badge
-            </p>
-            <p>
-              🌐 Every additional 10 FUN members you refer
-              <br />
-              ✅ You will receive a Referral bonus of $5
-            </p>
-          </div>
-        </div>
+        
       </div>
     </Layout>
   );

@@ -21,13 +21,13 @@ const AffiliateProgram = () => {
       icon: <DollarSign className="w-8 h-8" />,
       title: "High Commissions",
       description:
-        "Earn up to 40% commission on every referral - one of the highest rates in the industry."
+        "Earn up to 40% commission on two levels - the highest rewards in the industry."
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: "Multiple Income Streams",
       description:
-        "Earn from memberships, promo pages, and IT services referrals."
+        "Earn rewards from memberships, promo pages, and IT services."
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
@@ -45,13 +45,13 @@ const AffiliateProgram = () => {
       icon: <Target className="w-8 h-8" />,
       title: "Marketing Support",
       description:
-        "Professional marketing materials, banners, and promotional content."
+        "Professional marketing materials, banners, and promotional pages."
     },
     {
       icon: <Globe className="w-8 h-8" />,
       title: "Global Reach",
       description:
-        "Promote to audiences in 50+ countries with localized support."
+        "Expand your reach by showcasing to audiences worldwide."
     }
   ];
 
@@ -80,6 +80,69 @@ const AffiliateProgram = () => {
                 <p className="text-gray-600">{benefit.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+        <div className="bg-gray-50 py-12 px-6 rounded-lg mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+             This Is How It Works
+          </h2>
+          <div className="space-y-6 text-lg text-gray-700">
+            <p>
+             
+            </p>
+            
+            <p>
+              🌐 pay out a whopping 80 percent Referral Bonus<br/>
+              ✅ To our active FUN Members<br/></p>
+              <p>
+
+              🌐when members order a $10 AI Module<br/>
+              ✅ You will earn a $4 referral bonus level 1 and $4 on level 2
+            </p>
+            <p>
+              🌐 When members order a $10 Promo Page
+              <br />
+              ✅ You will earn a $4 referral  bonus at level 1 and $4 on level 2
+            </p>
+            <p>
+              🌐 When members order previous modules at $2.50,
+              <br />
+              ✅ Every member (also Free members) receives a $0.50 referral bonus on two tiers.
+            </p>
+            <p>
+              🌐 If any of your referrals orders IT services,
+              <br />
+              ✅ You will get a 10% commission.
+            </p>
+          </div>
+        </div>
+
+        {/* "Leadership Bonus" Section */}
+        <div className="bg-gray-50 py-12 px-6 rounded-lg mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+            Qualify for the Leadership Bonus:
+          </h2>
+          <div className="space-y-6 text-lg text-gray-700">
+            <p>
+              🌐 <strong>Refer 10+ new FUN Members</strong>
+              <br />
+              ✅ A $5 leadership bonus + Fun Bronze badge
+            </p>
+            <p>
+              🌐 Refer 20+ new FUN Members
+              <br />
+              ✅ A $10 leadership bonus + Fun Silver badge
+            </p>
+            <p>
+              🌐 Refer 30 new FUN Members
+              <br />
+              ✅ A $15 leadership bonus + Fun Gold badge
+            </p>
+            <p>
+              🌐 Every additional 10 FUN members you refer
+              <br />
+              ✅ You will receive a Referral bonus of $5
+            </p>
           </div>
         </div>
 

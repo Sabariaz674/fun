@@ -254,7 +254,7 @@ const Register = () => {
               {/* Referral Username (Optional) */}
               <div>
   <label htmlFor="referrer" className="block text-sm font-medium text-gray-700 mb-2">
-    Referrer Username (Optional)
+    Referrer Username *
   </label>
   <input
     type="text"

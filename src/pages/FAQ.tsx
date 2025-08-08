@@ -10,35 +10,32 @@ const FAQ = () => {
   const faqs = [
     {
       question: 'What services does 10 Dollar Fun offer?',
-      answer: 'We offer a wide range of digital services including AI modules, IT services, website development, affiliate programs, and device revival services. Most of our services start at just $10.'
+      answer: 'We offer a wide range of IT-related services and modules with 30 curated AI tools.'
     },
     {
       question: 'How do I get started?',
-      answer: 'Simply click on "Join Now" to register for an account, choose the services you need, and start using our platform immediately.'
+      answer: 'Click on the "Join Now" button to open an account and start using our services.'
     },
     {
       question: 'What payment methods do you accept?',
-      answer: 'We accept all major credit cards, PayPal, and bank transfers. All payments are processed securely through our encrypted payment system.'
+      answer: 'We accept PayPal, all major credit cards, bank transfer, and cryptocurrency.'
     },
     {
       question: 'Is there a free trial available?',
-      answer: 'Yes! We offer a 7-day free trial for new users on most of our services. You can explore our features without any commitment.'
+      answer: 'Feel free to sign up at no cost to explore our full range of services. Once you are familiar and confident with what we offer, you can easily place an order for any of our services.'
     },
-    {
-      question: 'How does the affiliate program work?',
-      answer: 'Our affiliate program offers 30% commission on all referral sales. Simply sign up, get your unique referral link, and start earning when people sign up through your link.'
-    },
+    
     {
       question: 'What kind of support do you provide?',
-      answer: 'We provide 24/7 customer support through email, live chat, and phone. Our technical team is always ready to help you with any issues.'
+      answer: 'We provide customer support through email. Our support staff and technical team are ready to assist you with any issue within two business days.'
     },
     {
       question: 'Can I cancel my subscription anytime?',
-      answer: 'Yes, you can cancel your subscription at any time. There are no cancellation fees, and you\'ll continue to have access until the end of your billing period.'
+      answer: 'Yes, you can cancel your subscription at any time, and you ill continue to have access to our services as a free member.'
     },
     {
       question: 'Do you offer custom solutions?',
-      answer: 'Absolutely! We can create custom AI modules, websites, and IT solutions tailored to your specific business needs. Contact us to discuss your requirements.'
+      answer: 'Yes, we do! We can create custom AI tools and IT solutions tailored to your specific business needs.  Feel free to reach out to us so we can discuss your specific needs.'
     }
   ];
 

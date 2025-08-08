@@ -11,7 +11,7 @@ const Header = () => {
     { name: 'About', href: '/about' },
     { name: 'Membership', href: '/membership' },
     { name: 'Modules', href: '/ai-modules' },
-    { name: 'Affiliate', href: '/affiliate-program' },
+    { name: 'Affiliates', href: '/affiliate-program' },
     { name: 'Services', href: '/it-services' },
     { name: 'Revive', href: '/revive' },
     { name: 'FAQ', href: '/faq' },

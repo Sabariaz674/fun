@@ -83,12 +83,7 @@ const Revive = () => {
               <p className="text-gray-600 mb-4">{service.description}</p>
               <div className="text-2xl font-bold text-gray-900 mb-4">{service.price}</div>
               
-              <Link 
-                to="/register" 
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-              >
-                Get Started
-              </Link>
+              
             </div>
           ))}
         </div>
@@ -111,9 +106,9 @@ const Revive = () => {
 
         {/* Referral Bonuses Section */}
         <div className="bg-gray-50 rounded-lg p-8 mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Referral Bonuses</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Commission</h2>
           <p className="text-lg text-gray-600 text-center">
-            Earn a **10% referral bonus** for each client referred to our **Revive Program**. The bonus is calculated after project completion.
+           Earn a 10% commission for each client referred to our Revive Program. The commission is calculated after the project has been completed.
           </p>
         </div>
 
