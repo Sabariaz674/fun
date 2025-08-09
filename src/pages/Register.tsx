@@ -43,10 +43,10 @@ const Register = () => {
 
   // Form submit handler
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isProcessing) return;
-    setIsProcessing(true);
-    setErrors({});
+  e.preventDefault();
+  if (isProcessing) return;
+  setIsProcessing(true);
+  setErrors({});
 
     // Username validation
     const usernamePattern = /^[a-zA-Z0-9_]{3,20}$/;
@@ -100,15 +100,16 @@ const Register = () => {
       return;
     }
 
-    try {
-      const user = await registerUser(
-        formData.email,
-        formData.password,
-        formData.username,
-        formData.country,
-        formData.referrer
-      );
-      setReferralLink(user.referralLink); // <-- yahan referralLink state me save hota hai
+     try {
+    const user = await registerUser(
+      formData.email,
+      formData.password,
+      formData.username,
+      formData.country,
+      formData.referrer
+    );
+      const constructedReferralLink = `https://10dollar.fun/?ref=${formData.username}`;
+    setReferralLink(constructedReferralLink);  // <-- yahan referralLink state me save hota hai
 
       if (!user) {
         setErrors({ general: 'Registration failed. Please try again.' });
@@ -122,7 +123,7 @@ const Register = () => {
   await sendEmailVerification(user);
 
   // If successful, show success message
-  toast.success('A verification email has been sent to your inbox. Please check your inbox and verify your email.', {
+  toast.success('We have sent you a welcome email. If it does not appear in your main inbox, please check your spam or junk folder.', {
     autoClose: 5000,
   });
 } catch (verificationError) {
@@ -134,13 +135,13 @@ const Register = () => {
     console.error('Verification error details:', verificationError);
 
     // Show a warning but don't confuse the user
-    toast.warn('A verification email has been sent to your inbox. Please check your inbox and verify your email.');
+    toast.warn('A verification email  has been not sent to your inbox. Please check your inbox and verify your email.');
   }
 }
 
 
       setModalIsOpen(true);
-      setIsProcessing(false);
+    setIsProcessing(false);
     } catch (error: any) {
       setErrors({ general: error?.message || 'Registration failed. Please try again.' });
       toast.error(error?.message || 'Registration failed. Please try again.');
@@ -336,7 +337,7 @@ const Register = () => {
       >
         <div className="p-6 text-center">
           <h2 className="text-2xl font-semibold text-green-600 mb-4">Registration Successful!</h2>
-          <p className="text-gray-600 mb-6">We've sent a verification link to your email. Please check your inbox and verify your email address to start using your account.</p>
+          <p className="text-gray-600 mb-6">We have sent you a welcome email. If it does not appear in your main inbox, please check your spam or junk folder.</p>
           {referralLink && (
             <div className="mb-4">
               <span className="font-semibold">Your Referral Link:</span>

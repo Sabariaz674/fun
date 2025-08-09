@@ -31,7 +31,8 @@ export const registerUser = async (email: string, password: string, username: st
     const userData = { username, country, email, referrer, referralLink };
     await setDoc(doc(db, "users", user.uid), userData);
 
-    return { ...user, referralLink }; // <-- Bas yahi return rakhain
+    // Return the original user object directly
+    return user; 
   } catch (error) {
     console.error('Error during registration:', error);
     throw error;
